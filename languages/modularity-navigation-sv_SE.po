@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.1.1\n"
+"Project-Id-Version: Modularity Navigation 0.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-11 00:00+0200\n"
 "PO-Revision-Date: 2026-07-11 00:00+0200\n"

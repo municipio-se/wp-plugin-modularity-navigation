@@ -21,6 +21,9 @@
     background: var(--color-complementary-light, var(--color-background-card, #fff));
     border-radius: var(--radius-lg, 0);
     text-decoration: none;
+    transition:
+        100ms color,
+        100ms background-color;
 }
 
 .mod-navigation-grid__link:visited {
