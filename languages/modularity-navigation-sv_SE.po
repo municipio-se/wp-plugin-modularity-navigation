@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Modularity Navigation 0.1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 00:00+0200\n"
+"PO-Revision-Date: 2026-07-11 00:00+0200\n"
+"Last-Translator: Whitespace\n"
+"Language-Team: Swedish\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: modularity-navigation\n"
+
+#: source/Module/Navigation.php
+msgid "Navigation"
+msgstr "Navigation"
+
+#: source/Module/Navigation.php
+msgid "Navigation modules"
+msgstr "Navigationsmoduler"
+
+#: source/Module/Navigation.php
+msgid "Outputs links from a selected WordPress menu."
+msgstr "Visar länkar från en vald WordPress-meny."
+
+#: source/Customizer/GridSettings.php
+msgid "Style for grid format"
+msgstr "Stil för rutnätsformat"
+
+#: source/Customizer/GridSettings.php
+msgid "Blocks"
+msgstr "Block"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Group Title"
+msgid "Navigation module"
+msgstr "Navigationsmodul"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Format"
+msgstr "Format"
+
+#: source/Fields.php
+msgctxt "Navigation Module Format Choice"
+msgid "Grid"
+msgstr "Rutnät"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Source"
+msgstr "Källa"
+
+#: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Menu"
+msgstr "Meny"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Menu"
+msgstr "Meny"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Display this module even when there are no links"
+msgstr "Visa denna modul även när det inte finns några länkar"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Message to display when there are no links"
+msgstr "Meddelande som visas när det inte finns några länkar"

@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Modularity Navigation 0.1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 00:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: modularity-navigation\n"
+
+#: source/Module/Navigation.php
+msgid "Navigation"
+msgstr ""
+
+#: source/Module/Navigation.php
+msgid "Navigation modules"
+msgstr ""
+
+#: source/Module/Navigation.php
+msgid "Outputs links from a selected WordPress menu."
+msgstr ""
+
+#: source/Customizer/GridSettings.php
+msgid "Style for grid format"
+msgstr ""
+
+#: source/Customizer/GridSettings.php
+msgid "Blocks"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Group Title"
+msgid "Navigation module"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Format"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Format Choice"
+msgid "Grid"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Source"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Menu"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Menu"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Display this module even when there are no links"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Message to display when there are no links"
+msgstr ""

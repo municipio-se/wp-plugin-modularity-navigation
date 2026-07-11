@@ -10,10 +10,21 @@ final class Plugin
 {
     public function register(): void
     {
+        add_action('init', [$this, 'loadTextDomain'], -10);
         add_action('init', [$this, 'registerModule'], 1);
         add_action('acf/init', [Fields::class, 'register']);
         add_filter('/Modularity/externalViewPath', [$this, 'registerViewPath']);
         add_action('municipio_customizer_panel_registered', [new GridSettings(), 'register'], 10, 1);
+    }
+
+    /**
+     * Load bundled translations before Modularity creates translated module labels. The fixed
+     * installer directory is also the production contract used for this plugin's symlink-safe
+     * assets and views.
+     */
+    public function loadTextDomain(): void
+    {
+        load_plugin_textdomain('modularity-navigation', false, 'modularity-navigation/languages');
     }
 
     /**

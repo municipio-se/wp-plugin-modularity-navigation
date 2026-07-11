@@ -28,7 +28,9 @@
 }
 
 .mod-navigation-grid__link:hover,
-.mod-navigation-grid__link:active {
+.mod-navigation-grid__link:active,
+.mod-navigation-grid__link:visited:hover,
+.mod-navigation-grid__link:visited:active {
     color: var(--color-primary-contrasting, #fff);
     background: var(--color-primary, #000);
 }
