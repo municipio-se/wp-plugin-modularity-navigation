@@ -1,7 +1,7 @@
 .mod-navigation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-    gap: calc(var(--base, 8px) * 2);
+    gap: var(--grid-gap);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -52,5 +52,4 @@
 
 .mod-navigation-grid__description {
     margin-block-start: calc(var(--base, 8px) / 2);
-    font-size: var(--font-size-base, 1rem);
 }

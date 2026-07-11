@@ -21,7 +21,13 @@
                     >
                         <span class="mod-navigation-grid__title">{{ $item['title'] }}</span>
                         @if ($item['description'] !== '')
-                            <span class="mod-navigation-grid__description">{{ $item['description'] }}</span>
+                            @typography([
+                                'element' => 'span',
+                                'variant' => 'meta',
+                                'classList' => ['mod-navigation-grid__description'],
+                            ])
+                                {{ $item['description'] }}
+                            @endtypography
                         @endif
                     </a>
                 </li>
