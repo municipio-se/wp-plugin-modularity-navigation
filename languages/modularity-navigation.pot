@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.1.2\n"
+"Project-Id-Version: Modularity Navigation 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 00:00+0200\n"
+"POT-Creation-Date: 2026-07-14 00:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "Navigation modules"
 msgstr ""
 
 #: source/Module/Navigation.php
-msgid "Outputs links from a selected WordPress menu."
+msgid "Outputs links from a menu or manual selection."
 msgstr ""
 
 #: source/Customizer/GridSettings.php
@@ -48,6 +48,11 @@ msgid "Grid"
 msgstr ""
 
 #: source/Fields.php
+msgctxt "Navigation Module Format Choice"
+msgid "Buttons"
+msgstr ""
+
+#: source/Fields.php
 msgctxt "Navigation Module Field Label"
 msgid "Source"
 msgstr ""
@@ -58,8 +63,48 @@ msgid "Menu"
 msgstr ""
 
 #: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Manually selected"
+msgstr ""
+
+#: source/Fields.php
 msgctxt "Navigation Module Field Label"
 msgid "Menu"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Items"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Link"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Variant"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Primary"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Secondary"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Default"
+msgstr ""
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Icon"
 msgstr ""
 
 #: source/Fields.php

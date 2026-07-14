@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.1.2\n"
+"Project-Id-Version: Modularity Navigation 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 00:00+0200\n"
-"PO-Revision-Date: 2026-07-11 00:00+0200\n"
+"POT-Creation-Date: 2026-07-14 00:00+0200\n"
+"PO-Revision-Date: 2026-07-14 00:00+0200\n"
 "Last-Translator: Whitespace\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -22,8 +22,8 @@ msgid "Navigation modules"
 msgstr "Navigationsmoduler"
 
 #: source/Module/Navigation.php
-msgid "Outputs links from a selected WordPress menu."
-msgstr "Visar länkar från en vald WordPress-meny."
+msgid "Outputs links from a menu or manual selection."
+msgstr "Visar länkar från en meny eller ett manuellt urval."
 
 #: source/Customizer/GridSettings.php
 msgid "Style for grid format"
@@ -49,6 +49,11 @@ msgid "Grid"
 msgstr "Rutnät"
 
 #: source/Fields.php
+msgctxt "Navigation Module Format Choice"
+msgid "Buttons"
+msgstr "Knappar"
+
+#: source/Fields.php
 msgctxt "Navigation Module Field Label"
 msgid "Source"
 msgstr "Källa"
@@ -59,9 +64,49 @@ msgid "Menu"
 msgstr "Meny"
 
 #: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Manually selected"
+msgstr "Manuellt utvalda"
+
+#: source/Fields.php
 msgctxt "Navigation Module Field Label"
 msgid "Menu"
 msgstr "Meny"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Items"
+msgstr "Objekt"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Link"
+msgstr "Länk"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Variant"
+msgstr "Variant"
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Primary"
+msgstr "Primär"
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Secondary"
+msgstr "Sekundär"
+
+#: source/Fields.php
+msgctxt "Navigation Module Button Variant Choice"
+msgid "Default"
+msgstr "Standard"
+
+#: source/Fields.php
+msgctxt "Navigation Module Field Label"
+msgid "Icon"
+msgstr "Ikon"
 
 #: source/Fields.php
 msgctxt "Navigation Module Field Label"

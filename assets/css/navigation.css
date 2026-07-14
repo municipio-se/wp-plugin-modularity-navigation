@@ -58,3 +58,17 @@
 .mod-navigation-grid__description {
     margin-block-start: calc(var(--base, 8px) / 2);
 }
+
+.mod-navigation-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base, 8px) * 2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mod-navigation-buttons__item {
+    margin: 0;
+    padding: 0;
+}

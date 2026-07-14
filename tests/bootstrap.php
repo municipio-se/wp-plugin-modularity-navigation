@@ -29,6 +29,14 @@ namespace Modularity {
 }
 
 namespace {
+    class WP_Post
+    {
+        public function __construct(
+            public int $ID,
+            public string $post_title = '',
+        ) {}
+    }
+
     define('ABSPATH', __DIR__);
     define('MODULARITY_NAVIGATION_PATH', dirname(__DIR__) . '/');
     define('MODULARITY_NAVIGATION_URL', 'https://example.test/wp-content/plugins/modularity-navigation/');
@@ -62,6 +70,21 @@ namespace {
     function get_field(string $name, int $postId): mixed
     {
         return $GLOBALS['modularity_navigation_test_acf'][$postId][$name] ?? null;
+    }
+
+    function url_to_postid(string $url): int
+    {
+        return $GLOBALS['modularity_navigation_test_url_post_ids'][$url] ?? 0;
+    }
+
+    function get_post(int $postId): ?WP_Post
+    {
+        return $GLOBALS['modularity_navigation_test_posts'][$postId] ?? null;
+    }
+
+    function update_post_meta(...$args): void
+    {
+        $GLOBALS['modularity_navigation_test_meta_writes'][] = $args;
     }
 
     function wp_enqueue_style(...$args): void

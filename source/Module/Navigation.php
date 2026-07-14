@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MunicipioModularityNavigation\Module;
 
+use MunicipioModularityNavigation\ManualItems;
 use MunicipioModularityNavigation\MenuItems;
 
 final class Navigation extends \Modularity\Module
@@ -29,7 +30,7 @@ final class Navigation extends \Modularity\Module
     {
         $this->nameSingular = __('Navigation', 'modularity-navigation');
         $this->namePlural = __('Navigation modules', 'modularity-navigation');
-        $this->description = __('Outputs links from a selected WordPress menu.', 'modularity-navigation');
+        $this->description = __('Outputs links from a menu or manual selection.', 'modularity-navigation');
         $this->templateDir = MODULARITY_NAVIGATION_PATH . 'views/';
     }
 
@@ -41,10 +42,15 @@ final class Navigation extends \Modularity\Module
         $fields = $this->getFields();
         $format = $fields['mod_navigation_format'] ?? '';
         $source = $fields['mod_navigation_source'] ?? '';
-        $items =
-            $format === 'grid' && $source === 'menu'
-                ? (new MenuItems())->fromMenu((string) ($fields['mod_navigation_menu'] ?? ''))
-                : [];
+        $items = match ($source) {
+            'menu' => (new MenuItems())->fromMenu((string) ($fields['mod_navigation_menu'] ?? '')),
+            'manual' => (new ManualItems())->fromFields($fields['mod_navigation_items'] ?? null),
+            default => [],
+        };
+
+        if (!in_array($format, ['grid', 'buttons'], true)) {
+            $items = [];
+        }
 
         return [
             'format' => $format,

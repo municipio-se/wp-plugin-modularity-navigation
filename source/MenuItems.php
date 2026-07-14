@@ -27,15 +27,26 @@ final class MenuItems
         $items = [];
 
         foreach ($menuItems as $menuItem) {
-            if ((int) ($menuItem->menu_item_parent ?? 0) !== 0) {
+            if (!is_object($menuItem) || (int) ($menuItem->menu_item_parent ?? 0) !== 0) {
+                continue;
+            }
+
+            $title = is_string($menuItem->title ?? null) ? $menuItem->title : '';
+            $href = is_string($menuItem->url ?? null) ? $menuItem->url : '';
+
+            if ($title === '' || $href === '') {
                 continue;
             }
 
             $items[] = [
-                'title' => (string) ($menuItem->title ?? ''),
-                'href' => (string) ($menuItem->url ?? ''),
+                'title' => $title,
+                'href' => $href,
                 'description' => $this->getDescription($menuItem),
-                'target' => (string) ($menuItem->target ?? ''),
+                'target' => in_array($menuItem->target ?? null, ['_self', '_blank', '_parent', '_top'], true)
+                    ? $menuItem->target
+                    : '',
+                'icon' => '',
+                'buttonVariant' => 'default',
             ];
         }
 
@@ -48,7 +59,7 @@ final class MenuItems
      */
     private function getDescription(object $menuItem): string
     {
-        $description = (string) ($menuItem->description ?? '');
+        $description = is_string($menuItem->description ?? null) ? $menuItem->description : '';
 
         if ($description !== '' || !function_exists('get_field')) {
             return $description;
@@ -56,6 +67,8 @@ final class MenuItems
 
         $connectedPostId = (int) ($menuItem->object_id ?? 0);
 
-        return $connectedPostId > 0 ? (string) get_field('page_navigation_description', $connectedPostId) : '';
+        $fallback = $connectedPostId > 0 ? get_field('page_navigation_description', $connectedPostId) : '';
+
+        return is_string($fallback) ? $fallback : '';
     }
 }
