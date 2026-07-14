@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MunicipioModularityNavigation\Module;
 
+use MunicipioModularityNavigation\ChildrenItems;
 use MunicipioModularityNavigation\ManualItems;
 use MunicipioModularityNavigation\MenuItems;
 
@@ -30,7 +31,10 @@ final class Navigation extends \Modularity\Module
     {
         $this->nameSingular = __('Navigation', 'modularity-navigation');
         $this->namePlural = __('Navigation modules', 'modularity-navigation');
-        $this->description = __('Outputs links from a menu or manual selection.', 'modularity-navigation');
+        $this->description = __(
+            'Outputs links from menus, manual selections, or child pages.',
+            'modularity-navigation',
+        );
         $this->templateDir = MODULARITY_NAVIGATION_PATH . 'views/';
     }
 
@@ -45,10 +49,11 @@ final class Navigation extends \Modularity\Module
         $items = match ($source) {
             'menu' => (new MenuItems())->fromMenu((string) ($fields['mod_navigation_menu'] ?? '')),
             'manual' => (new ManualItems())->fromFields($fields['mod_navigation_items'] ?? null),
+            'children' => (new ChildrenItems())->fromPost($this->currentPostId()),
             default => [],
         };
 
-        if (!in_array($format, ['grid', 'buttons'], true)) {
+        if (!in_array($format, ['grid', 'buttons', 'list'], true)) {
             $items = [];
         }
 
@@ -70,5 +75,19 @@ final class Navigation extends \Modularity\Module
             [],
             MODULARITY_NAVIGATION_VERSION,
         );
+    }
+
+    /**
+     * Municipio owns page-context resolution for frontend, archive, and asynchronous module
+     * rendering. The WordPress fallback keeps the plugin fail-closed on compatible installs
+     * where that helper has not loaded yet.
+     */
+    private function currentPostId(): int
+    {
+        if (class_exists(\Municipio\Helper\CurrentPostId::class)) {
+            return (int) \Municipio\Helper\CurrentPostId::get();
+        }
+
+        return function_exists('get_queried_object_id') ? (int) get_queried_object_id() : 0;
     }
 }

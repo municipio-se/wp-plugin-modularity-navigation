@@ -54,6 +54,27 @@
                 </li>
             @endforeach
         </ul>
+    @elseif (!empty($items) && $format === 'list')
+        <ul class="mod-navigation-list">
+            @foreach ($items as $item)
+                <li class="mod-navigation-list__item">
+                    @link([
+                        'href' => $item['href'],
+                        'target' => $item['target'] !== '' ? $item['target'] : '_self',
+                        'xfn' => $item['target'] === '_blank' ? 'noopener noreferrer' : false,
+                        'classList' => ['mod-navigation-list__link'],
+                    ])
+                        @icon([
+                            'icon' => $item['icon'] !== '' ? $item['icon'] : 'arrow_forward',
+                            'size' => 'md',
+                            'classList' => ['mod-navigation-list__icon'],
+                        ])
+                        @endicon
+                        <span class="mod-navigation-list__label">{{ $item['title'] }}</span>
+                    @endlink
+                </li>
+            @endforeach
+        </ul>
     @elseif ($showIfEmpty && $emptyMessage !== '')
         <div class="mod-navigation-grid__empty-message">
             {!! wp_kses_post($emptyMessage) !!}

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.2.0\n"
+"Project-Id-Version: Modularity Navigation 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-14 00:00+0200\n"
 "PO-Revision-Date: 2026-07-14 00:00+0200\n"
@@ -22,8 +22,8 @@ msgid "Navigation modules"
 msgstr "Navigationsmoduler"
 
 #: source/Module/Navigation.php
-msgid "Outputs links from a menu or manual selection."
-msgstr "Visar länkar från en meny eller ett manuellt urval."
+msgid "Outputs links from menus, manual selections, or child pages."
+msgstr "Visar länkar från menyer, manuella urval eller undersidor."
 
 #: source/Customizer/GridSettings.php
 msgid "Style for grid format"
@@ -54,6 +54,11 @@ msgid "Buttons"
 msgstr "Knappar"
 
 #: source/Fields.php
+msgctxt "Navigation Module Format Choice"
+msgid "List"
+msgstr "Lista"
+
+#: source/Fields.php
 msgctxt "Navigation Module Field Label"
 msgid "Source"
 msgstr "Källa"
@@ -67,6 +72,11 @@ msgstr "Meny"
 msgctxt "Navigation Module Source Choice"
 msgid "Manually selected"
 msgstr "Manuellt utvalda"
+
+#: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Child pages"
+msgstr "Undersidor"
 
 #: source/Fields.php
 msgctxt "Navigation Module Field Label"

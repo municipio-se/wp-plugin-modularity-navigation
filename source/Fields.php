@@ -47,6 +47,7 @@ final class Fields
                 'choices' => [
                     'grid' => _x('Grid', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'buttons' => _x('Buttons', 'Navigation Module Format Choice', 'modularity-navigation'),
+                    'list' => _x('List', 'Navigation Module Format Choice', 'modularity-navigation'),
                 ],
             ],
             [
@@ -59,6 +60,7 @@ final class Fields
                 'choices' => [
                     'menu' => _x('Menu', 'Navigation Module Source Choice', 'modularity-navigation'),
                     'manual' => _x('Manually selected', 'Navigation Module Source Choice', 'modularity-navigation'),
+                    'children' => _x('Child pages', 'Navigation Module Source Choice', 'modularity-navigation'),
                 ],
             ],
             [
@@ -148,6 +150,13 @@ final class Fields
                                     'field' => 'field_mod_navigation_format',
                                     'operator' => '==',
                                     'value' => 'buttons',
+                                ],
+                            ],
+                            [
+                                [
+                                    'field' => 'field_mod_navigation_format',
+                                    'operator' => '==',
+                                    'value' => 'list',
                                 ],
                             ],
                         ],

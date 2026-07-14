@@ -26,9 +26,12 @@ final class FieldsTest extends TestCase
 
         self::assertSame('group_mod_navigation', $group['key']);
         self::assertSame('mod-navigation', $group['location'][0][0]['value']);
-        self::assertSame(['grid' => 'Grid', 'buttons' => 'Buttons'], $fields['mod_navigation_format']['choices']);
         self::assertSame(
-            ['menu' => 'Menu', 'manual' => 'Manually selected'],
+            ['grid' => 'Grid', 'buttons' => 'Buttons', 'list' => 'List'],
+            $fields['mod_navigation_format']['choices'],
+        );
+        self::assertSame(
+            ['menu' => 'Menu', 'manual' => 'Manually selected', 'children' => 'Child pages'],
             $fields['mod_navigation_source']['choices'],
         );
         self::assertSame(['sidebarmenu' => 'SidebarMenu'], $fields['mod_navigation_menu']['choices']);
@@ -45,6 +48,9 @@ final class FieldsTest extends TestCase
         );
         self::assertSame('buttons', $subFields['button_variant']['conditional_logic'][0][0]['value']);
         self::assertSame('icon', $subFields['icon']['type']);
-        self::assertSame('buttons', $subFields['icon']['conditional_logic'][0][0]['value']);
+        self::assertSame(
+            ['buttons', 'list'],
+            array_column(array_column($subFields['icon']['conditional_logic'], 0), 'value'),
+        );
     }
 }

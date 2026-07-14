@@ -17,6 +17,10 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_acf'] = [];
         $GLOBALS['modularity_navigation_test_styles'] = [];
         $GLOBALS['modularity_navigation_test_posts'] = [];
+        $GLOBALS['modularity_navigation_test_children'] = [];
+        $GLOBALS['modularity_navigation_test_current_post_id'] = 0;
+        $GLOBALS['modularity_navigation_test_permalinks'] = [];
+        $GLOBALS['modularity_navigation_test_post_queries'] = [];
         $GLOBALS['modularity_navigation_test_url_post_ids'] = [];
         $GLOBALS['modularity_navigation_test_meta_writes'] = [];
     }
@@ -70,6 +74,11 @@ final class NavigationTest extends TestCase
         yield 'grid with manual items' => ['grid', 'manual'];
         yield 'buttons with menu' => ['buttons', 'menu'];
         yield 'buttons with manual items' => ['buttons', 'manual'];
+        yield 'grid with child pages' => ['grid', 'children'];
+        yield 'buttons with child pages' => ['buttons', 'children'];
+        yield 'list with menu' => ['list', 'menu'];
+        yield 'list with manual items' => ['list', 'manual'];
+        yield 'list with child pages' => ['list', 'children'];
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('supportedCombinations')]
@@ -101,13 +110,105 @@ final class NavigationTest extends TestCase
                 'object_id' => '0',
             ],
         ];
+        $GLOBALS['modularity_navigation_test_current_post_id'] = 18;
+        $GLOBALS['modularity_navigation_test_posts'][18] = new \WP_Post(18, 'Utbildning och barnomsorg');
+        $GLOBALS['modularity_navigation_test_children'][18] = [new \WP_Post(32, 'Child page')];
+        $GLOBALS['modularity_navigation_test_permalinks'][32] = 'https://example.test/child/';
 
         $data = (new Navigation())->data();
 
         self::assertSame($format, $data['format']);
         self::assertSame($source, $data['source']);
         self::assertCount(1, $data['items']);
-        self::assertSame($source === 'menu' ? 'Menu link' : 'Manual link', $data['items'][0]['title']);
+        self::assertSame(
+            match ($source) {
+                'menu' => 'Menu link',
+                'manual' => 'Manual link',
+                'children' => 'Child page',
+            },
+            $data['items'][0]['title'],
+        );
+    }
+
+    public function testItReadsHoorsImportedListOfChildPagesWithoutResavingTheModule(): void
+    {
+        $GLOBALS['modularity_navigation_test_fields'] = [
+            'mod_navigation_format' => 'list',
+            'mod_navigation_source' => 'children',
+        ];
+        $GLOBALS['modularity_navigation_test_current_post_id'] = 18;
+        $GLOBALS['modularity_navigation_test_posts'][18] = new \WP_Post(18, 'Utbildning och barnomsorg');
+
+        $children = [
+            [32,    'Förskola'],
+            [33,    'Grundskola'],
+            [64299, 'Skolskjuts'],
+            [35,    'Anpassad grundskola'],
+            [90,    'E-tjänster och blanketter för skola, förskola och fritidshem'],
+            [19468, 'Måltider på förskolor och skolor'],
+            [34,    'Gymnasium'],
+            [3952,  'Höörs Lärcentrum vuxenutbildningen'],
+            [39,    'Elevhälsa och särskilt stöd'],
+            [36,    'Kulturskola'],
+            [81,    'Pedagogisk omsorg på obekväm arbetstid'],
+            [62206, 'Synpunkter eller klagomål på förskola eller skola'],
+            [52,    'Digitalisering'],
+            [153,   'Olycksfallsförsäkring'],
+        ];
+
+        foreach ($children as [$postId, $title]) {
+            $GLOBALS['modularity_navigation_test_children'][18][] = new \WP_Post($postId, $title);
+            $GLOBALS['modularity_navigation_test_permalinks'][$postId] = "https://example.test/{$postId}/";
+        }
+
+        $GLOBALS['modularity_navigation_test_acf'][64299]['custom_menu_title'] = 'Skolskjuts för elever';
+        $GLOBALS['modularity_navigation_test_acf'][64299]['page_navigation_description'] = 'Ansök och läs reglerna';
+        $GLOBALS['modularity_navigation_test_acf'][64299]['page_navigation_icon'] = ['name' => 'directions_bus'];
+
+        $data = (new Navigation())->data();
+
+        self::assertSame('list', $data['format']);
+        self::assertSame('children', $data['source']);
+        self::assertSame(
+            [
+                'Förskola',
+                'Grundskola',
+                'Skolskjuts för elever',
+                'Anpassad grundskola',
+                'E-tjänster och blanketter för skola, förskola och fritidshem',
+                'Måltider på förskolor och skolor',
+                'Gymnasium',
+                'Höörs Lärcentrum vuxenutbildningen',
+                'Elevhälsa och särskilt stöd',
+                'Kulturskola',
+                'Pedagogisk omsorg på obekväm arbetstid',
+                'Synpunkter eller klagomål på förskola eller skola',
+                'Digitalisering',
+                'Olycksfallsförsäkring',
+            ],
+            array_column($data['items'], 'title'),
+        );
+        self::assertSame('Ansök och läs reglerna', $data['items'][2]['description']);
+        self::assertSame('directions_bus', $data['items'][2]['icon']);
+        self::assertSame('default', $data['items'][2]['buttonVariant']);
+        self::assertSame('', $data['items'][2]['target']);
+        self::assertSame(
+            [
+                'post_parent' => 18,
+                'post_type' => 'page',
+                'nopaging' => true,
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'meta_query' => [
+                    'relation' => 'OR',
+                    ['key' => 'hide_in_menu', 'value' => '1', 'compare' => '!='],
+                    ['key' => 'hide_in_menu', 'compare' => 'NOT EXISTS'],
+                ],
+            ],
+            $GLOBALS['modularity_navigation_test_post_queries'][0],
+        );
+        self::assertSame([], $GLOBALS['modularity_navigation_test_meta_writes']);
     }
 
     public function testItReadsHoorsImportedButtonsWithoutResavingTheModule(): void

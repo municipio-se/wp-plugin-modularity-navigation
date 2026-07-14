@@ -28,12 +28,24 @@ namespace Modularity {
     }
 }
 
+namespace Municipio\Helper {
+    class CurrentPostId
+    {
+        public static function get(): int
+        {
+            return $GLOBALS['modularity_navigation_test_current_post_id'] ?? 0;
+        }
+    }
+}
+
 namespace {
     class WP_Post
     {
         public function __construct(
             public int $ID,
             public string $post_title = '',
+            public string $post_type = 'page',
+            public int $menu_order = 0,
         ) {}
     }
 
@@ -80,6 +92,23 @@ namespace {
     function get_post(int $postId): ?WP_Post
     {
         return $GLOBALS['modularity_navigation_test_posts'][$postId] ?? null;
+    }
+
+    function get_posts(array $args): array|false
+    {
+        $GLOBALS['modularity_navigation_test_post_queries'][] = $args;
+
+        return $GLOBALS['modularity_navigation_test_children'][$args['post_parent'] ?? 0] ?? false;
+    }
+
+    function get_permalink(int $postId): string|false
+    {
+        return $GLOBALS['modularity_navigation_test_permalinks'][$postId] ?? false;
+    }
+
+    function get_queried_object_id(): int
+    {
+        return $GLOBALS['modularity_navigation_test_queried_object_id'] ?? 0;
     }
 
     function update_post_meta(...$args): void
