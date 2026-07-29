@@ -22,7 +22,7 @@
                         @if ($item['icon'] !== '')
                             @icon([
                                 'icon' => $item['icon'],
-                                'size' => 'md',
+                                'size' => 'lg',
                                 'classList' => ['mod-navigation-grid__icon'],
                             ])
                             @endicon
