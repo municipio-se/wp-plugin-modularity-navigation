@@ -49,6 +49,7 @@
 .mod-navigation-grid__title,
 .mod-navigation-grid__description {
   display: block;
+  grid-column: 2;
 }
 
 .mod-navigation-grid__title {
@@ -60,6 +61,19 @@
 
 .mod-navigation-grid__description {
   margin-block-start: calc(var(--base, 8px) / 2);
+}
+
+.mod-navigation-grid__link:has(.mod-navigation-grid__icon) {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: calc(var(--base, 8px) * 1.5);
+  align-items: center;
+}
+
+.mod-navigation-grid__icon {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  align-self: center;
 }
 
 .mod-navigation-buttons {
