@@ -19,6 +19,14 @@
                         href="{{ esc_url($item['href']) }}"
                         @if ($item['target'] === '_blank') target="_blank" rel="noopener noreferrer" @endif
                     >
+                        @if ($item['icon'] !== '')
+                            @icon([
+                                'icon' => $item['icon'],
+                                'size' => 'md',
+                                'classList' => ['mod-navigation-grid__icon'],
+                            ])
+                            @endicon
+                        @endif
                         <span class="mod-navigation-grid__title">{{ $item['title'] }}</span>
                         @if ($item['description'] !== '')
                             @typography([

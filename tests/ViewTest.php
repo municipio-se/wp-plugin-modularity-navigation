@@ -20,6 +20,8 @@ final class ViewTest extends TestCase
         self::assertStringContainsString("'reversePositions' => true", $view);
         self::assertStringContainsString('@link([', $view);
         self::assertStringContainsString('@icon([', $view);
+        // The grid renders the resolved item icon (restores LTS grid×menu icons).
+        self::assertStringContainsString('mod-navigation-grid__icon', $view);
         self::assertStringContainsString('<ul class="mod-navigation-list">', $view);
         self::assertStringContainsString('<li class="mod-navigation-list__item">', $view);
         self::assertStringNotContainsString("\$source ===", $view);
