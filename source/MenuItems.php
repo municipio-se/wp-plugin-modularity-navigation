@@ -45,7 +45,7 @@ final class MenuItems
                 'target' => in_array($menuItem->target ?? null, ['_self', '_blank', '_parent', '_top'], true)
                     ? $menuItem->target
                     : '',
-                'icon' => '',
+                'icon' => $this->getIcon($menuItem),
                 'buttonVariant' => 'default',
             ];
         }
@@ -70,5 +70,41 @@ final class MenuItems
         $fallback = $connectedPostId > 0 ? get_field('page_navigation_description', $connectedPostId) : '';
 
         return is_string($fallback) ? $fallback : '';
+    }
+
+    /**
+     * LTS stored the grid/menu icon on the menu item itself (ACF), not on the
+     * connected page. Prefer `menu_item_icon`; fall back to the legacy `icon`
+     * field. Menu items without either resolve to no icon, so existing menus are
+     * unchanged.
+     */
+    private function getIcon(object $menuItem): string
+    {
+        if (!function_exists('get_field')) {
+            return '';
+        }
+
+        $menuItemId = (int) ($menuItem->ID ?? 0);
+
+        if ($menuItemId <= 0) {
+            return '';
+        }
+
+        $icon = $this->iconName(get_field('menu_item_icon', $menuItemId));
+
+        if ($icon === '') {
+            $icon = $this->iconName(get_field('icon', $menuItemId));
+        }
+
+        return $icon;
+    }
+
+    private function iconName(mixed $value): string
+    {
+        if (is_array($value)) {
+            $value = $value['name'] ?? $value['icon'] ?? $value['material_icon'] ?? null;
+        }
+
+        return is_string($value) ? $value : '';
     }
 }
