@@ -27,7 +27,13 @@ final class FieldsTest extends TestCase
         self::assertSame('group_mod_navigation', $group['key']);
         self::assertSame('mod-navigation', $group['location'][0][0]['value']);
         self::assertSame(
-            ['grid' => 'Grid', 'buttons' => 'Buttons', 'list' => 'List'],
+            [
+                'grid' => 'Grid',
+                'buttons' => 'Buttons',
+                'list' => 'List',
+                'inline' => 'Inline',
+                'bar' => 'Bar',
+            ],
             $fields['mod_navigation_format']['choices'],
         );
         self::assertSame(
@@ -49,7 +55,7 @@ final class FieldsTest extends TestCase
         self::assertSame('buttons', $subFields['button_variant']['conditional_logic'][0][0]['value']);
         self::assertSame('icon', $subFields['icon']['type']);
         self::assertSame(
-            ['buttons', 'list'],
+            ['buttons', 'list', 'inline', 'bar'],
             array_column(array_column($subFields['icon']['conditional_logic'], 0), 'value'),
         );
     }

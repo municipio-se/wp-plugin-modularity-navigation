@@ -53,7 +53,7 @@ final class Navigation extends \Modularity\Module
             default => [],
         };
 
-        if (!in_array($format, ['grid', 'buttons', 'list'], true)) {
+        if (!in_array($format, ['grid', 'buttons', 'list', 'inline', 'bar'], true)) {
             $items = [];
         }
 

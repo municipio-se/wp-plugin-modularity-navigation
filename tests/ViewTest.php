@@ -24,6 +24,13 @@ final class ViewTest extends TestCase
         self::assertStringContainsString('mod-navigation-grid__icon', $view);
         self::assertStringContainsString('<ul class="mod-navigation-list">', $view);
         self::assertStringContainsString('<li class="mod-navigation-list__item">', $view);
+        // Inline and bar "quick links" formats render as accessible lists.
+        self::assertStringContainsString("\$format === 'inline'", $view);
+        self::assertStringContainsString("\$format === 'bar'", $view);
+        self::assertStringContainsString('<ul class="mod-navigation-inline">', $view);
+        self::assertStringContainsString('<ul class="mod-navigation-bar">', $view);
+        // Navigation icons are decorative — the visible label is the accessible name.
+        self::assertStringContainsString("'decorative' => true", $view);
         self::assertStringNotContainsString("\$source ===", $view);
         self::assertStringNotContainsString("@component('mxui.button'", $view);
     }
