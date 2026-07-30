@@ -122,3 +122,128 @@
   align-self: center;
   text-decoration: underline;
 }
+
+/*
+ * Inline and bar are the LTS "quick links" bands (mxui.navigation.inline / .bar).
+ * They share a primary-colored band, contrasting text and an underlined label, and
+ * differ only in layout: inline is a horizontal, wrapping row of icon-beside-label
+ * chips; bar is an auto-fit grid of stacked icon-above-label columns.
+ */
+.mod-navigation-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--base, 8px) / 4);
+  justify-content: center;
+  margin: 0;
+  padding: calc(var(--base, 8px) / 4);
+  list-style: none;
+  background: var(--color-primary, #000);
+}
+
+.mod-navigation-inline__item {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.mod-navigation-inline__link {
+  display: inline-grid;
+  grid-template-columns: max-content 1fr;
+  gap: calc(var(--base, 8px) / 2);
+  align-items: center;
+  padding: calc(var(--base, 8px) * 1.5);
+  color: var(--color-primary-contrasting, #fff);
+  border-radius: var(--radius-lg, 0);
+  text-decoration: none;
+  transition: 100ms background-color;
+}
+
+.mod-navigation-inline__link:hover,
+.mod-navigation-inline__link:focus,
+.mod-navigation-inline__link:active,
+.mod-navigation-inline__link:visited {
+  color: var(--color-primary-contrasting, #fff);
+  text-decoration: none;
+}
+
+.mod-navigation-inline__link:hover,
+.mod-navigation-inline__link:active {
+  background: var(--color-primary-dark, #000);
+}
+
+.mod-navigation-inline__link:focus-visible {
+  outline: 3px solid var(--color-primary-contrasting, #fff);
+  outline-offset: -3px;
+}
+
+.mod-navigation-inline__icon {
+  flex: none;
+}
+
+.mod-navigation-inline__label {
+  text-decoration: underline;
+}
+
+.mod-navigation-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-primary, #000);
+}
+
+.mod-navigation-bar__item {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.mod-navigation-bar__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--base, 8px);
+  height: 100%;
+  padding: calc(var(--base, 8px) * 2.5) var(--base, 8px);
+  color: var(--color-primary-contrasting, #fff);
+  text-align: center;
+  text-decoration: none;
+  transition: 100ms background-color;
+}
+
+.mod-navigation-bar__link:hover,
+.mod-navigation-bar__link:focus,
+.mod-navigation-bar__link:active,
+.mod-navigation-bar__link:visited {
+  color: var(--color-primary-contrasting, #fff);
+  text-decoration: none;
+}
+
+.mod-navigation-bar__link:hover,
+.mod-navigation-bar__link:active {
+  background: var(--color-primary-dark, #000);
+}
+
+.mod-navigation-bar__link:focus-visible {
+  outline: 3px solid var(--color-primary-contrasting, #fff);
+  outline-offset: -3px;
+}
+
+.mod-navigation-bar__icon {
+  flex: none;
+}
+
+.mod-navigation-bar__label {
+  text-decoration: underline;
+}
+
+/* Honor reduced-motion for every navigation hover transition. */
+@media (prefers-reduced-motion: reduce) {
+  .mod-navigation-grid__link,
+  .mod-navigation-inline__link,
+  .mod-navigation-bar__link {
+    transition: none;
+  }
+}
