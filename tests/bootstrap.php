@@ -69,6 +69,15 @@ namespace {
         return $GLOBALS['modularity_navigation_test_theme_mods'][$name] ?? $default;
     }
 
+    function apply_filters(string $hook, mixed $value, mixed ...$args): mixed
+    {
+        foreach ($GLOBALS['modularity_navigation_test_filters'][$hook] ?? [] as $callback) {
+            $value = $callback($value, ...$args);
+        }
+
+        return $value;
+    }
+
     function wp_get_nav_menu_items(string $slug): array|false
     {
         return $GLOBALS['modularity_navigation_test_menus'][$slug] ?? false;

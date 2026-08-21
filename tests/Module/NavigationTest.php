@@ -23,6 +23,7 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_post_queries'] = [];
         $GLOBALS['modularity_navigation_test_url_post_ids'] = [];
         $GLOBALS['modularity_navigation_test_meta_writes'] = [];
+        $GLOBALS['modularity_navigation_test_filters'] = [];
     }
 
     public function testItMapsTheImportedGridMenuWithoutChangingStoredValues(): void
@@ -53,6 +54,8 @@ final class NavigationTest extends TestCase
             ],
         ];
         $GLOBALS['modularity_navigation_test_acf'][101]['page_navigation_description'] = 'Ekonomi, familj och omsorg';
+        $GLOBALS['modularity_navigation_test_filters']['MunicipioModularityNavigation/gridPresentationView'][] =
+            static fn(mixed $view, int $moduleId, array $items): string => 'nora-navigation-grid';
 
         $data = (new Navigation())->data();
 
@@ -63,6 +66,7 @@ final class NavigationTest extends TestCase
         self::assertSame('Omsorg och stöd', $data['items'][0]['title']);
         self::assertSame('Ekonomi, familj och omsorg', $data['items'][0]['description']);
         self::assertFalse($data['showIfEmpty']);
+        self::assertSame(['nora-navigation-grid', 'navigation-grid'], $data['gridPresentationViews']);
     }
 
     /**

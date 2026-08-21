@@ -14,6 +14,7 @@ final class ViewTest extends TestCase
 
         self::assertIsString($view);
         self::assertStringContainsString("\$format === 'grid'", $view);
+        self::assertStringContainsString('@includeFirst($gridPresentationViews)', $view);
         self::assertStringContainsString("\$format === 'buttons'", $view);
         self::assertStringContainsString("\$format === 'list'", $view);
         self::assertStringContainsString('@button([', $view);
@@ -21,7 +22,20 @@ final class ViewTest extends TestCase
         self::assertStringContainsString('@link([', $view);
         self::assertStringContainsString('@icon([', $view);
         // The grid renders the resolved item icon (restores LTS grid×menu icons).
-        self::assertStringContainsString('mod-navigation-grid__icon', $view);
+        $gridView = file_get_contents(dirname(__DIR__) . '/views/navigation-grid.blade.php');
+        self::assertIsString($gridView);
+        self::assertStringContainsString('mod-navigation-grid__icon', $gridView);
+        self::assertStringContainsString('mod-navigation-grid__title', $gridView);
+        self::assertStringContainsString('mod-navigation-grid__description', $gridView);
+        self::assertStringContainsString(
+            '--mod-navigation-grid-link-padding',
+            $styles = file_get_contents(dirname(__DIR__) . '/assets/css/navigation.css'),
+        );
+        self::assertStringContainsString('--mod-navigation-grid-focus-color', $styles);
+        self::assertStringContainsString('.mod-navigation-grid__link:visited', $styles);
+        self::assertStringContainsString('.mod-navigation-grid__link:active', $styles);
+        self::assertStringContainsString('.mod-navigation-grid__link:visited:active', $styles);
+        self::assertStringContainsString('.mod-navigation-grid__link:focus-visible', $styles);
         self::assertStringContainsString('<ul class="mod-navigation-list">', $view);
         self::assertStringContainsString('<li class="mod-navigation-list__item">', $view);
         // Inline and bar "quick links" formats render as accessible lists.
@@ -33,6 +47,15 @@ final class ViewTest extends TestCase
         self::assertStringContainsString("'decorative' => true", $view);
         self::assertStringNotContainsString("\$source ===", $view);
         self::assertStringNotContainsString("@component('mxui.button'", $view);
+    }
+
+    public function testGridUsesThePackageViewAsFallbackWhenAnOverrideIsMissing(): void
+    {
+        $view = file_get_contents(dirname(__DIR__) . '/views/navigation.blade.php');
+
+        self::assertIsString($view);
+        self::assertStringContainsString('@includeFirst($gridPresentationViews)', $view);
+        self::assertFileExists(dirname(__DIR__) . '/views/navigation-grid.blade.php');
     }
 
     public function testListUnderlinesOnlyTheLinkLabel(): void

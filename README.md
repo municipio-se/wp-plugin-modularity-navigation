@@ -40,6 +40,31 @@ No write migration runs. The plugin keeps the LTS post type, field names,
 repeater shape, menu slug, and theme-mod key intact, so imported content remains
 editable and repeat activation is idempotent by design.
 
+## Grid presentation extension
+
+The package-owned `navigation-grid` Blade view remains the default. A site
+plugin can provide a focused grid presentation without replacing the complete
+Navigation module by registering its view root through
+`/Modularity/externalViewPath` and returning a plain Blade view name from:
+
+```php
+add_filter(
+    'MunicipioModularityNavigation/gridPresentationView',
+    static fn(): string => 'site-navigation-grid',
+);
+```
+
+The filter also receives the module ID, normalized items, and current grid style
+as its second through fourth arguments. The selected view receives Navigation's
+normalized module data. Invalid or missing override views safely fall back to
+`navigation-grid`; buttons, list, inline, bar, module title, and empty-state
+rendering never use the override.
+
+Site presentations can set `--mod-navigation-grid-link-padding` and
+`--mod-navigation-grid-focus-color` on their own grid wrapper or items. Both
+variables fall back to the package's existing spacing and primary focus color,
+so the shared presentation is unchanged.
+
 ## Development
 
 ```console

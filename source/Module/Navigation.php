@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MunicipioModularityNavigation\Module;
 
 use MunicipioModularityNavigation\ChildrenItems;
+use MunicipioModularityNavigation\GridPresentation;
 use MunicipioModularityNavigation\ManualItems;
 use MunicipioModularityNavigation\MenuItems;
 
@@ -57,11 +58,23 @@ final class Navigation extends \Modularity\Module
             $items = [];
         }
 
+        $gridStyle = get_theme_mod('mod_navigation_grid_style', 'blocks');
+        $gridPresentationView = $format === 'grid'
+            ? apply_filters(
+                'MunicipioModularityNavigation/gridPresentationView',
+                null,
+                (int) $this->ID,
+                $items,
+                $gridStyle,
+            )
+            : null;
+
         return [
             'format' => $format,
             'source' => $source,
             'items' => $items,
-            'gridStyle' => get_theme_mod('mod_navigation_grid_style', 'blocks'),
+            'gridStyle' => $gridStyle,
+            'gridPresentationViews' => (new GridPresentation())->viewCandidates($gridPresentationView),
             'showIfEmpty' => in_array($fields['mod_navigation_show_if_empty'] ?? null, [1, '1', true], true),
             'emptyMessage' => (string) ($fields['mod_navigation_empty_message'] ?? ''),
         ];
