@@ -16,7 +16,7 @@
 .mod-navigation-grid__link {
   display: block;
   height: 100%;
-  padding: calc(var(--base, 8px) * 2);
+  padding: var(--mod-navigation-grid-link-padding, calc(var(--base, 8px) * 2));
   color: var(--color-complementary-contrasting, var(--color-black, #000));
   background: var(
     --color-complementary-light,
@@ -42,7 +42,8 @@
 }
 
 .mod-navigation-grid__link:focus-visible {
-  outline: 3px solid var(--color-primary, #000);
+  outline: 3px solid
+    var(--mod-navigation-grid-focus-color, var(--color-primary, #000));
   outline-offset: 3px;
 }
 
