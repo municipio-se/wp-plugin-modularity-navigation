@@ -63,6 +63,7 @@ final class Fields
                     'menu' => _x('Menu', 'Navigation Module Source Choice', 'modularity-navigation'),
                     'manual' => _x('Manually selected', 'Navigation Module Source Choice', 'modularity-navigation'),
                     'children' => _x('Child pages', 'Navigation Module Source Choice', 'modularity-navigation'),
+                    'siblings' => _x('Sibling pages', 'Navigation Module Source Choice', 'modularity-navigation'),
                 ],
             ],
             [

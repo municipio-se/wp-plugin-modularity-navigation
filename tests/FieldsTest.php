@@ -37,7 +37,12 @@ final class FieldsTest extends TestCase
             $fields['mod_navigation_format']['choices'],
         );
         self::assertSame(
-            ['menu' => 'Menu', 'manual' => 'Manually selected', 'children' => 'Child pages'],
+            [
+                'menu' => 'Menu',
+                'manual' => 'Manually selected',
+                'children' => 'Child pages',
+                'siblings' => 'Sibling pages',
+            ],
             $fields['mod_navigation_source']['choices'],
         );
         self::assertSame(['sidebarmenu' => 'SidebarMenu'], $fields['mod_navigation_menu']['choices']);

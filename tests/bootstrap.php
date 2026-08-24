@@ -46,6 +46,7 @@ namespace {
             public string $post_title = '',
             public string $post_type = 'page',
             public int $menu_order = 0,
+            public int $post_parent = 0,
         ) {}
     }
 
@@ -106,6 +107,10 @@ namespace {
     function get_posts(array $args): array|false
     {
         $GLOBALS['modularity_navigation_test_post_queries'][] = $args;
+
+        if (isset($args['post__not_in'])) {
+            return $GLOBALS['modularity_navigation_test_siblings'][$args['post_parent'] ?? 0] ?? false;
+        }
 
         return $GLOBALS['modularity_navigation_test_children'][$args['post_parent'] ?? 0] ?? false;
     }

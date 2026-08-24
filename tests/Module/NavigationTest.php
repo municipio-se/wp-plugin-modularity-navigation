@@ -18,6 +18,7 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_styles'] = [];
         $GLOBALS['modularity_navigation_test_posts'] = [];
         $GLOBALS['modularity_navigation_test_children'] = [];
+        $GLOBALS['modularity_navigation_test_siblings'] = [];
         $GLOBALS['modularity_navigation_test_current_post_id'] = 0;
         $GLOBALS['modularity_navigation_test_permalinks'] = [];
         $GLOBALS['modularity_navigation_test_post_queries'] = [];
@@ -80,6 +81,7 @@ final class NavigationTest extends TestCase
         yield 'buttons with manual items' => ['buttons', 'manual'];
         yield 'grid with child pages' => ['grid', 'children'];
         yield 'buttons with child pages' => ['buttons', 'children'];
+        yield 'buttons with sibling pages' => ['buttons', 'siblings'];
         yield 'list with menu' => ['list', 'menu'];
         yield 'list with manual items' => ['list', 'manual'];
         yield 'list with child pages' => ['list', 'children'];
@@ -117,7 +119,9 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_current_post_id'] = 18;
         $GLOBALS['modularity_navigation_test_posts'][18] = new \WP_Post(18, 'Utbildning och barnomsorg');
         $GLOBALS['modularity_navigation_test_children'][18] = [new \WP_Post(32, 'Child page')];
+        $GLOBALS['modularity_navigation_test_siblings'][0] = [new \WP_Post(33, 'Sibling page')];
         $GLOBALS['modularity_navigation_test_permalinks'][32] = 'https://example.test/child/';
+        $GLOBALS['modularity_navigation_test_permalinks'][33] = 'https://example.test/sibling/';
 
         $data = (new Navigation())->data();
 
@@ -129,6 +133,7 @@ final class NavigationTest extends TestCase
                 'menu' => 'Menu link',
                 'manual' => 'Manual link',
                 'children' => 'Child page',
+                'siblings' => 'Sibling page',
             },
             $data['items'][0]['title'],
         );

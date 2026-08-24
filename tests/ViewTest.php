@@ -15,6 +15,9 @@ final class ViewTest extends TestCase
         self::assertIsString($view);
         self::assertStringContainsString("\$format === 'grid'", $view);
         self::assertStringContainsString('@includeFirst($gridPresentationViews)', $view);
+        self::assertStringContainsString("'componentElement' => 'nav'", $view);
+        self::assertStringContainsString("'aria-labelledby'", $view);
+        self::assertStringContainsString("'aria-label'", $view);
         self::assertStringContainsString("\$format === 'buttons'", $view);
         self::assertStringContainsString("\$format === 'list'", $view);
         self::assertStringContainsString('@button([', $view);

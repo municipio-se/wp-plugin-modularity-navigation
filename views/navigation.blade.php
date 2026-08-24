@@ -10,6 +10,15 @@
         @endtypography
     @endif
 
+    @if (!empty($items))
+        @element([
+            'componentElement' => 'nav',
+            'attributeList' => !$hideTitle && !empty($postTitle)
+                ? ['aria-labelledby' => 'mod-navigation-' . $ID . '-label']
+                : ['aria-label' => !empty($postTitle) ? $postTitle : __('Navigation', 'modularity-navigation')],
+        ])
+    @endif
+
     @if (!empty($items) && $format === 'grid')
         @includeFirst($gridPresentationViews)
     @elseif (!empty($items) && $format === 'buttons')
@@ -106,6 +115,10 @@
                 </li>
             @endforeach
         </ul>
+    @endif
+
+    @if (!empty($items))
+        @endelement
     @elseif ($showIfEmpty && $emptyMessage !== '')
         <div class="mod-navigation-grid__empty-message">
             {!! wp_kses_post($emptyMessage) !!}

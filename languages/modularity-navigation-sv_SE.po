@@ -22,8 +22,8 @@ msgid "Navigation modules"
 msgstr "Navigationsmoduler"
 
 #: source/Module/Navigation.php
-msgid "Outputs links from menus, manual selections, or child pages."
-msgstr "Visar länkar från menyer, manuella urval eller undersidor."
+msgid "Outputs links from menus, manual selections, child pages, or sibling pages."
+msgstr "Visar länkar från menyer, manuella urval, undersidor eller syskonsidor."
 
 #: source/Customizer/GridSettings.php
 msgid "Style for grid format"
@@ -77,6 +77,11 @@ msgstr "Manuellt utvalda"
 msgctxt "Navigation Module Source Choice"
 msgid "Child pages"
 msgstr "Undersidor"
+
+#: source/Fields.php
+msgctxt "Navigation Module Source Choice"
+msgid "Sibling pages"
+msgstr "Syskonsidor"
 
 #: source/Fields.php
 msgctxt "Navigation Module Field Label"

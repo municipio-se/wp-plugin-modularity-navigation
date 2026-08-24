@@ -8,6 +8,7 @@ use MunicipioModularityNavigation\ChildrenItems;
 use MunicipioModularityNavigation\GridPresentation;
 use MunicipioModularityNavigation\ManualItems;
 use MunicipioModularityNavigation\MenuItems;
+use MunicipioModularityNavigation\SiblingItems;
 
 final class Navigation extends \Modularity\Module
 {
@@ -33,7 +34,7 @@ final class Navigation extends \Modularity\Module
         $this->nameSingular = __('Navigation', 'modularity-navigation');
         $this->namePlural = __('Navigation modules', 'modularity-navigation');
         $this->description = __(
-            'Outputs links from menus, manual selections, or child pages.',
+            'Outputs links from menus, manual selections, child pages, or sibling pages.',
             'modularity-navigation',
         );
         $this->templateDir = MODULARITY_NAVIGATION_PATH . 'views/';
@@ -51,6 +52,7 @@ final class Navigation extends \Modularity\Module
             'menu' => (new MenuItems())->fromMenu((string) ($fields['mod_navigation_menu'] ?? '')),
             'manual' => (new ManualItems())->fromFields($fields['mod_navigation_items'] ?? null),
             'children' => (new ChildrenItems())->fromPost($this->currentPostId()),
+            'siblings' => (new SiblingItems())->fromPost($this->currentPostId()),
             default => [],
         };
 
