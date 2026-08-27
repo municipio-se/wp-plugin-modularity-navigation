@@ -10,7 +10,7 @@ final class ManualItems
      * Keep the released LTS repeater shape as the read contract. Invalid rows are skipped so a
      * partially malformed import cannot produce warnings or empty links.
      *
-     * @return array<int, array<string, string>>
+     * @return array<int, array<string, mixed>>
      */
     public function fromFields(mixed $rawItems): array
     {
@@ -50,6 +50,7 @@ final class ManualItems
                 'target' => $this->linkTarget($link['target'] ?? null),
                 'icon' => $this->iconName($rawItem['icon'] ?? null, $post),
                 'buttonVariant' => $this->buttonVariant($rawItem['button_variant'] ?? null),
+                'postId' => $post instanceof \WP_Post ? $post->ID : 0,
             ];
         }
 

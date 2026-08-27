@@ -48,6 +48,7 @@ final class Fields
                     'grid' => _x('Grid', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'buttons' => _x('Buttons', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'list' => _x('List', 'Navigation Module Format Choice', 'modularity-navigation'),
+                    'cards' => _x('Cards', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'inline' => _x('Inline', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'bar' => _x('Bar', 'Navigation Module Format Choice', 'modularity-navigation'),
                 ],

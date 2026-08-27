@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.3.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-14 00:00+0200\n"
+"Project-Id-Version: Modularity Navigation 0.4.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-"
+"modularity-navigation\n"
+"POT-Creation-Date: 2026-08-27T08:36:25+00:00\n"
 "PO-Revision-Date: 2026-07-14 00:00+0200\n"
 "Last-Translator: Whitespace\n"
 "Language-Team: Swedish\n"
@@ -13,122 +14,154 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: modularity-navigation\n"
 
-#: source/Module/Navigation.php
+#. Plugin Name of the plugin
+#: modularity-navigation.php
+msgid "Modularity Navigation"
+msgstr "Modularity Navigation"
+
+#. Description of the plugin
+#: modularity-navigation.php
+msgid "Ports focused navigation-module capabilities to modern Municipio."
+msgstr ""
+
+#. Author of the plugin
+#: modularity-navigation.php
+msgid "Whitespace"
+msgstr ""
+
+#: source/Customizer/GridSettings.php:30 source/Module/Navigation.php:35
 msgid "Navigation"
 msgstr "Navigation"
 
-#: source/Module/Navigation.php
-msgid "Navigation modules"
-msgstr "Navigationsmoduler"
-
-#: source/Module/Navigation.php
-msgid "Outputs links from menus, manual selections, child pages, or sibling pages."
-msgstr "Visar länkar från menyer, manuella urval, undersidor eller syskonsidor."
-
-#: source/Customizer/GridSettings.php
+#: source/Customizer/GridSettings.php:41
 msgid "Style for grid format"
 msgstr "Stil för rutnätsformat"
 
-#: source/Customizer/GridSettings.php
+#: source/Customizer/GridSettings.php:46
 msgid "Blocks"
 msgstr "Block"
 
-#: source/Fields.php
+#: source/Fields.php:17
 msgctxt "Navigation Module Field Group Title"
 msgid "Navigation module"
 msgstr "Navigationsmodul"
 
-#: source/Fields.php
+#: source/Fields.php:42
 msgctxt "Navigation Module Field Label"
 msgid "Format"
 msgstr "Format"
 
-#: source/Fields.php
+#: source/Fields.php:48
 msgctxt "Navigation Module Format Choice"
 msgid "Grid"
 msgstr "Rutnät"
 
-#: source/Fields.php
+#: source/Fields.php:49
 msgctxt "Navigation Module Format Choice"
 msgid "Buttons"
 msgstr "Knappar"
 
-#: source/Fields.php
+#: source/Fields.php:50
 msgctxt "Navigation Module Format Choice"
 msgid "List"
 msgstr "Lista"
 
-#: source/Fields.php
+#: source/Fields.php:51
+msgctxt "Navigation Module Format Choice"
+msgid "Cards"
+msgstr "Kort"
+
+#: source/Fields.php:52
+msgctxt "Navigation Module Format Choice"
+msgid "Inline"
+msgstr ""
+
+#: source/Fields.php:53
+msgctxt "Navigation Module Format Choice"
+msgid "Bar"
+msgstr ""
+
+#: source/Fields.php:58
 msgctxt "Navigation Module Field Label"
 msgid "Source"
 msgstr "Källa"
 
-#: source/Fields.php
+#: source/Fields.php:64
 msgctxt "Navigation Module Source Choice"
 msgid "Menu"
 msgstr "Meny"
 
-#: source/Fields.php
+#: source/Fields.php:65
 msgctxt "Navigation Module Source Choice"
 msgid "Manually selected"
 msgstr "Manuellt utvalda"
 
-#: source/Fields.php
+#: source/Fields.php:66
 msgctxt "Navigation Module Source Choice"
 msgid "Child pages"
 msgstr "Undersidor"
 
-#: source/Fields.php
+#: source/Fields.php:67
 msgctxt "Navigation Module Source Choice"
 msgid "Sibling pages"
 msgstr "Syskonsidor"
 
-#: source/Fields.php
+#: source/Fields.php:72
 msgctxt "Navigation Module Field Label"
 msgid "Menu"
 msgstr "Meny"
 
-#: source/Fields.php
+#: source/Fields.php:90
 msgctxt "Navigation Module Field Label"
 msgid "Items"
 msgstr "Objekt"
 
-#: source/Fields.php
+#: source/Fields.php:105
 msgctxt "Navigation Module Field Label"
 msgid "Link"
 msgstr "Länk"
 
-#: source/Fields.php
+#: source/Fields.php:113
 msgctxt "Navigation Module Field Label"
 msgid "Variant"
 msgstr "Variant"
 
-#: source/Fields.php
+#: source/Fields.php:117
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Primary"
 msgstr "Primär"
 
-#: source/Fields.php
+#: source/Fields.php:122
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Secondary"
 msgstr "Sekundär"
 
-#: source/Fields.php
+#: source/Fields.php:127
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Default"
 msgstr "Standard"
 
-#: source/Fields.php
+#: source/Fields.php:147
 msgctxt "Navigation Module Field Label"
 msgid "Icon"
 msgstr "Ikon"
 
-#: source/Fields.php
+#: source/Fields.php:186
 msgctxt "Navigation Module Field Label"
 msgid "Display this module even when there are no links"
 msgstr "Visa denna modul även när det inte finns några länkar"
 
-#: source/Fields.php
+#: source/Fields.php:198
 msgctxt "Navigation Module Field Label"
 msgid "Message to display when there are no links"
 msgstr "Meddelande som visas när det inte finns några länkar"
+
+#: source/Module/Navigation.php:36
+msgid "Navigation modules"
+msgstr "Navigationsmoduler"
+
+#: source/Module/Navigation.php:37
+msgid ""
+"Outputs links from menus, manual selections, child pages, or sibling pages."
+msgstr ""
+"Visar länkar från menyer, manuella urval, undersidor eller syskonsidor."

@@ -10,8 +10,8 @@ compatibility layer.
 - Existing `mod_navigation_format`, `mod_navigation_source`,
   `mod_navigation_menu`, `mod_navigation_items`, `mod_navigation_show_if_empty`,
   and `mod_navigation_empty_message` metadata is reused.
-- Formats `grid`, `buttons`, and `list` can each render sources `menu`,
-  `manual`, and `children`.
+- Formats `grid`, `buttons`, `list`, `cards`, `inline`, and `bar` can render
+  sources `menu`, `manual`, `children`, and `siblings`.
 - Menu sources render only top-level items. Manual sources retain their saved
   order, links, targets, icons, and button variants.
 - Child-page sources resolve the current Municipio page and retain WordPress
@@ -21,9 +21,15 @@ compatibility layer.
 - Button output uses Municipios current Button and Icon components. List output
   uses the current Link and Icon components inside semantic unordered-list
   markup.
+- Card output uses Municipios current Card component and keeps Navigation's
+  saved title, URL, target, source order, and empty-state behavior. A link to a
+  local post reuses Municipios post-object contract for its featured image and
+  filtered short excerpt. External or unresolved links receive no invented
+  excerpt and use the Card component's own placeholder behavior.
 
-Other LTS formats and sources are intentionally outside this release. Their
-values remain in the database but render no output until separately ported.
+The plugin does not copy LTS templates, utility classes, colors, pixel sizes,
+or its former eight-word card excerpt. It requires modern Municipio and its
+Card and post-object contracts.
 
 ## Installation
 

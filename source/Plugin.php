@@ -15,6 +15,7 @@ final class Plugin
         add_action('acf/init', [Fields::class, 'register']);
         add_filter('/Modularity/externalViewPath', [$this, 'registerViewPath']);
         add_action('municipio_customizer_panel_registered', [new GridSettings(), 'register'], 10, 1);
+        add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyle']);
     }
 
     /**
@@ -53,5 +54,20 @@ final class Plugin
         $paths['mod-navigation'] = MODULARITY_NAVIGATION_PATH . 'views';
 
         return $paths;
+    }
+
+    /**
+     * Modularity's conditional module asset lookup does not cover every legacy content-area
+     * placement. Loading this small, selector-scoped stylesheet at plugin level keeps those
+     * migrated modules styled without depending on where the module is rendered.
+     */
+    public function enqueueFrontendStyle(): void
+    {
+        wp_enqueue_style(
+            'modularity-navigation',
+            MODULARITY_NAVIGATION_URL . 'assets/css/navigation.css',
+            [],
+            MODULARITY_NAVIGATION_VERSION,
+        );
     }
 }

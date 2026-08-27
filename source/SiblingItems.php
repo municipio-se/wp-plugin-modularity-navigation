@@ -9,7 +9,7 @@ final class SiblingItems
     /**
      * Return the current post's visible siblings in the ordering used by Municipio LTS.
      *
-     * @return array<int, array<string, string>>
+     * @return array<int, array<string, mixed>>
      */
     public function fromPost(int $postId): array
     {
@@ -72,6 +72,7 @@ final class SiblingItems
                 'target' => '',
                 'icon' => $this->iconName($icon),
                 'buttonVariant' => 'default',
+                'postId' => $sibling->ID,
             ];
         }
 

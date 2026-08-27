@@ -11,7 +11,7 @@ final class ChildrenItems
      * flat link model used by every supported presentation. Navigation's supported formats
      * intentionally render only the first child level, so no depth migration is required.
      *
-     * @return array<int, array<string, string>>
+     * @return array<int, array<string, mixed>>
      */
     public function fromPost(int $postId): array
     {
@@ -73,6 +73,7 @@ final class ChildrenItems
                 'target' => '',
                 'icon' => $this->iconName($icon),
                 'buttonVariant' => 'default',
+                'postId' => $child->ID,
             ];
         }
 

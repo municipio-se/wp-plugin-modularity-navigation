@@ -13,6 +13,8 @@ final class MenuItemsTest extends TestCase
     {
         $GLOBALS['modularity_navigation_test_menus'] = [];
         $GLOBALS['modularity_navigation_test_acf'] = [];
+        $GLOBALS['modularity_navigation_test_posts'] = [];
+        $GLOBALS['modularity_navigation_test_url_post_ids'] = [];
     }
 
     public function testItReturnsNoItemsForAnEmptySlug(): void
@@ -74,5 +76,41 @@ final class MenuItemsTest extends TestCase
         $items = (new MenuItems())->fromMenu('m');
 
         self::assertSame('call', $items[0]['icon']);
+    }
+
+    public function testItUsesOnlyPostTypeConnectionsBeforeFallingBackToTheUrl(): void
+    {
+        $externalUrl = 'https://external.example/';
+        $localUrl = 'https://example.test/local/';
+        $GLOBALS['modularity_navigation_test_posts'][42] = new \WP_Post(42, 'Unrelated post');
+        $GLOBALS['modularity_navigation_test_posts'][84] = new \WP_Post(84, 'Connected page');
+        $GLOBALS['modularity_navigation_test_url_post_ids'][$localUrl] = 84;
+        $GLOBALS['modularity_navigation_test_menus']['cards'] = [
+            (object) [
+                'menu_item_parent' => 0,
+                'title' => 'External custom link',
+                'url' => $externalUrl,
+                'object_id' => 42,
+                'type' => 'custom',
+            ],
+            (object) [
+                'menu_item_parent' => 0,
+                'title' => 'Connected page',
+                'url' => 'https://example.test/connected/',
+                'object_id' => 84,
+                'type' => 'post_type',
+            ],
+            (object) [
+                'menu_item_parent' => 0,
+                'title' => 'URL-resolved page',
+                'url' => $localUrl,
+                'object_id' => 0,
+                'type' => 'custom',
+            ],
+        ];
+
+        $items = (new MenuItems())->fromMenu('cards');
+
+        self::assertSame([0, 84, 84], array_column($items, 'postId'));
     }
 }

@@ -25,6 +25,9 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_url_post_ids'] = [];
         $GLOBALS['modularity_navigation_test_meta_writes'] = [];
         $GLOBALS['modularity_navigation_test_filters'] = [];
+        $GLOBALS['modularity_navigation_test_excerpts'] = [];
+        $GLOBALS['modularity_navigation_test_images'] = [];
+        $GLOBALS['modularity_navigation_test_prepared_posts'] = [];
     }
 
     public function testItMapsTheImportedGridMenuWithoutChangingStoredValues(): void
@@ -85,6 +88,10 @@ final class NavigationTest extends TestCase
         yield 'list with menu' => ['list', 'menu'];
         yield 'list with manual items' => ['list', 'manual'];
         yield 'list with child pages' => ['list', 'children'];
+        yield 'cards with menu' => ['cards', 'menu'];
+        yield 'cards with manual items' => ['cards', 'manual'];
+        yield 'cards with child pages' => ['cards', 'children'];
+        yield 'cards with sibling pages' => ['cards', 'siblings'];
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('supportedCombinations')]

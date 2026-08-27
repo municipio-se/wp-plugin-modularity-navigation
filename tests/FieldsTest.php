@@ -31,6 +31,7 @@ final class FieldsTest extends TestCase
                 'grid' => 'Grid',
                 'buttons' => 'Buttons',
                 'list' => 'List',
+                'cards' => 'Cards',
                 'inline' => 'Inline',
                 'bar' => 'Bar',
             ],

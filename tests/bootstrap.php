@@ -36,9 +36,35 @@ namespace Municipio\Helper {
             return $GLOBALS['modularity_navigation_test_current_post_id'] ?? 0;
         }
     }
+
+    class Post
+    {
+        public static function preparePostObjectArchive(\WP_Post $post): object
+        {
+            $GLOBALS['modularity_navigation_test_prepared_posts'][] = $post->ID;
+
+            return new \ModularityNavigationTestPostObject(
+                $GLOBALS['modularity_navigation_test_excerpts'][$post->ID] ?? '',
+                $GLOBALS['modularity_navigation_test_images'][$post->ID] ?? null,
+            );
+        }
+    }
 }
 
 namespace {
+    class ModularityNavigationTestPostObject
+    {
+        public function __construct(
+            public string $excerptShort,
+            private mixed $image,
+        ) {}
+
+        public function getImage(): mixed
+        {
+            return $this->image;
+        }
+    }
+
     class WP_Post
     {
         public function __construct(

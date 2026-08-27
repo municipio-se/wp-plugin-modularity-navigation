@@ -10,7 +10,7 @@ final class MenuItems
      * Keep only top-level items, matching the LTS grid behavior. Nested menu items belong
      * to the formats deliberately left outside this first port.
      *
-     * @return array<int, array<string, string>>
+     * @return array<int, array<string, mixed>>
      */
     public function fromMenu(string $menuSlug): array
     {
@@ -47,10 +47,23 @@ final class MenuItems
                     : '',
                 'icon' => $this->getIcon($menuItem),
                 'buttonVariant' => 'default',
+                'postId' => $this->connectedPostId($menuItem, $href),
             ];
         }
 
         return $items;
+    }
+
+    private function connectedPostId(object $menuItem, string $href): int
+    {
+        $postId = ($menuItem->type ?? null) === 'post_type' ? (int) ($menuItem->object_id ?? 0) : 0;
+        $post = $postId > 0 && function_exists('get_post') ? get_post($postId) : null;
+
+        if ($post instanceof \WP_Post) {
+            return $post->ID;
+        }
+
+        return function_exists('url_to_postid') ? (int) url_to_postid($href) : 0;
     }
 
     /**

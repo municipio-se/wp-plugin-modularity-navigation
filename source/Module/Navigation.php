@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MunicipioModularityNavigation\Module;
 
+use MunicipioModularityNavigation\CardItems;
 use MunicipioModularityNavigation\ChildrenItems;
 use MunicipioModularityNavigation\GridPresentation;
 use MunicipioModularityNavigation\ManualItems;
@@ -56,8 +57,12 @@ final class Navigation extends \Modularity\Module
             default => [],
         };
 
-        if (!in_array($format, ['grid', 'buttons', 'list', 'inline', 'bar'], true)) {
+        if (!in_array($format, ['grid', 'buttons', 'list', 'cards', 'inline', 'bar'], true)) {
             $items = [];
+        }
+
+        if ($format === 'cards') {
+            $items = (new CardItems())->fromItems($items);
         }
 
         $gridStyle = get_theme_mod('mod_navigation_grid_style', 'blocks');
