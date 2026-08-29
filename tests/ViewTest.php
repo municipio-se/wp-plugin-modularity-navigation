@@ -66,6 +66,10 @@ final class ViewTest extends TestCase
         self::assertStringContainsString("'image' => \$item['cardImage']", $view);
         self::assertStringContainsString("'hasPlaceholder' => \$item['cardHasPlaceholder']", $view);
         self::assertStringContainsString('u-unlist u-padding--0', $view);
+        self::assertStringNotContainsString('o-grid', $view);
+        self::assertStringNotContainsString('o-grid-12@sm', $view);
+        self::assertStringNotContainsString('o-grid-6@md', $view);
+        self::assertStringNotContainsString('o-grid-4@lg', $view);
         self::assertStringNotContainsString("'date'", $view);
         self::assertStringNotContainsString("'tags'", $view);
         self::assertStringNotContainsString('readingTime', $view);
@@ -73,6 +77,12 @@ final class ViewTest extends TestCase
         $styles = file_get_contents(dirname(__DIR__) . '/assets/css/navigation.css');
         self::assertIsString($styles);
         self::assertMatchesRegularExpression('/\.mod-navigation-cards\s*\{[^}]*list-style:\s*none;/s', $styles);
+        self::assertMatchesRegularExpression('/\.mod-navigation-cards\s*\{[^}]*display:\s*grid;/s', $styles);
+        self::assertMatchesRegularExpression(
+            '/grid-template-columns:\s*repeat\(\s*auto-fill,\s*minmax\(min\(100%,\s*18rem\),\s*1fr\)\s*\);/s',
+            $styles,
+        );
+        self::assertMatchesRegularExpression('/\.mod-navigation-cards\s*\{[^}]*gap:\s*var\(--grid-gap\);/s', $styles);
     }
 
     public function testGridUsesThePackageViewAsFallbackWhenAnOverrideIsMissing(): void

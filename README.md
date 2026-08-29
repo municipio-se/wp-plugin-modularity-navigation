@@ -26,6 +26,9 @@ compatibility layer.
   local post reuses Municipios post-object contract for its featured image and
   filtered short excerpt. External or unresolved links receive no invented
   excerpt and use the Card component's own placeholder behavior.
+- Card columns follow the module's available width. Each column is at least
+  `18rem` when space allows, and an incomplete final row keeps empty column
+  tracks so its cards remain the same width as the preceding row.
 
 The plugin does not copy LTS templates, utility classes, colors, pixel sizes,
 or its former eight-word card excerpt. It requires modern Municipio and its

@@ -1,6 +1,6 @@
-<ul class="o-grid o-grid--stretch u-unlist u-padding--0 mod-navigation-cards">
+<ul class="u-unlist u-padding--0 mod-navigation-cards">
     @foreach ($items as $item)
-        <li class="o-grid-12@sm o-grid-6@md o-grid-4@lg mod-navigation-cards__item">
+        <li class="mod-navigation-cards__item">
             @card([
                 'link' => $item['href'],
                 'heading' => $item['title'],
