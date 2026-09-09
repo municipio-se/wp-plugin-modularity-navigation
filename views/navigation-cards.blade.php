@@ -2,6 +2,7 @@
     @foreach ($items as $item)
         <li class="mod-navigation-cards__item">
             @card([
+                'context' => ['module.navigation.cards'],
                 'link' => $item['href'],
                 'heading' => $item['title'],
                 'content' => $item['cardExcerpt'] !== '' ? $item['cardExcerpt'] : false,
