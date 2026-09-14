@@ -3,7 +3,8 @@
 /**
  * Plugin Name: Modularity Navigation
  * Description: Ports focused navigation-module capabilities to modern Municipio.
- * Version: 0.4.0
+ * Version: 1.0.0
+ * Requires PHP: 8.2
  * Author: Whitespace
  * License: MIT
  * Text Domain: modularity-navigation
@@ -24,7 +25,7 @@ define('MODULARITY_NAVIGATION_FILE', __FILE__);
  */
 define('MODULARITY_NAVIGATION_PATH', trailingslashit(WP_PLUGIN_DIR) . 'modularity-navigation/');
 define('MODULARITY_NAVIGATION_URL', trailingslashit(plugins_url('modularity-navigation')));
-define('MODULARITY_NAVIGATION_VERSION', '0.4.0');
+define('MODULARITY_NAVIGATION_VERSION', '1.0.0');
 
 $autoload = MODULARITY_NAVIGATION_PATH . 'vendor/autoload.php';
 

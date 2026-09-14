@@ -30,11 +30,15 @@ compatibility layer.
   `18rem` when space allows, and an incomplete final row keeps empty column
   tracks so its cards remain the same width as the preceding row.
 
-The plugin does not copy LTS templates, utility classes, colors, pixel sizes,
-or its former eight-word card excerpt. It requires modern Municipio and its
-Card and post-object contracts.
+The plugin does not copy LTS templates, utility classes, colors, pixel sizes, or
+its former eight-word card excerpt. It requires modern Municipio and its Card
+and post-object contracts.
 
 ## Installation
+
+Release candidates, verification, publication and rollback are documented in
+[RELEASING.md](RELEASING.md). See [CHANGELOG.md](CHANGELOG.md) for version
+history.
 
 Install `municipio/wp-plugin-modularity-navigation` with Composer. Composer
 Installers places it in `wp-content/plugins/modularity-navigation` through
