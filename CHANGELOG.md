@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 — 2026-10-13
+
+Reduce child-navigation query cost by filtering visibility with bulk-loaded
+post metadata instead of metadata joins. Preserve child scope, ascending menu
+order and visibility for missing and repeated metadata values. No data migration
+is required.
+
 ## 1.0.1 — 2026-10-13
 
 Reduce sibling-navigation query cost by filtering visibility with bulk-loaded
