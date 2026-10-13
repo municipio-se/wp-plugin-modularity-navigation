@@ -22,6 +22,7 @@ final class NavigationTest extends TestCase
         $GLOBALS['modularity_navigation_test_current_post_id'] = 0;
         $GLOBALS['modularity_navigation_test_permalinks'] = [];
         $GLOBALS['modularity_navigation_test_post_queries'] = [];
+        $GLOBALS['modularity_navigation_test_post_meta'] = [];
         $GLOBALS['modularity_navigation_test_url_post_ids'] = [];
         $GLOBALS['modularity_navigation_test_meta_writes'] = [];
         $GLOBALS['modularity_navigation_test_filters'] = [];
@@ -216,11 +217,7 @@ final class NavigationTest extends TestCase
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'ASC',
-                'meta_query' => [
-                    'relation' => 'OR',
-                    ['key' => 'hide_in_menu', 'value' => '1', 'compare' => '!='],
-                    ['key' => 'hide_in_menu', 'compare' => 'NOT EXISTS'],
-                ],
+                'update_post_meta_cache' => true,
             ],
             $GLOBALS['modularity_navigation_test_post_queries'][0],
         );

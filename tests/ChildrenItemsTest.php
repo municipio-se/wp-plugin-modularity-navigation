@@ -16,6 +16,7 @@ final class ChildrenItemsTest extends TestCase
         $GLOBALS['modularity_navigation_test_permalinks'] = [];
         $GLOBALS['modularity_navigation_test_acf'] = [];
         $GLOBALS['modularity_navigation_test_post_queries'] = [];
+        $GLOBALS['modularity_navigation_test_post_meta'] = [];
     }
 
     public function testItReturnsNoItemsWhenTheCurrentPostIsUnavailable(): void
@@ -43,6 +44,38 @@ final class ChildrenItemsTest extends TestCase
         self::assertSame(
             ['https://example.test/title-from-acf/', 'https://example.test/valid/'],
             array_column($items, 'href'),
+        );
+    }
+
+    public function testItPreservesVisibilityAndChildOrdering(): void
+    {
+        $GLOBALS['modularity_navigation_test_posts'][18] = new \WP_Post(18, 'Parent');
+        $values = [
+            19 => [],
+            20 => ['0'],
+            21 => [''],
+            22 => ['1'],
+            23 => ['1', '1'],
+            24 => ['1', '0'],
+            25 => ['0', '1'],
+        ];
+        foreach ($values as $id => $metadata) {
+            $GLOBALS['modularity_navigation_test_children'][18][] = new \WP_Post($id, "Page $id");
+            $GLOBALS['modularity_navigation_test_post_meta'][$id]['hide_in_menu'] = $metadata;
+            $GLOBALS['modularity_navigation_test_permalinks'][$id] = "https://example.test/$id/";
+        }
+        self::assertSame([19, 20, 21, 24, 25], array_column((new ChildrenItems())->fromPost(18), 'postId'));
+        self::assertSame(
+            [
+                'post_parent' => 18,
+                'post_type' => 'page',
+                'nopaging' => true,
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'update_post_meta_cache' => true,
+            ],
+            $GLOBALS['modularity_navigation_test_post_queries'][0],
         );
     }
 }

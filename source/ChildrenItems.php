@@ -28,18 +28,7 @@ final class ChildrenItems
             'post_status' => 'publish',
             'orderby' => 'menu_order',
             'order' => 'ASC',
-            'meta_query' => [
-                'relation' => 'OR',
-                [
-                    'key' => 'hide_in_menu',
-                    'value' => '1',
-                    'compare' => '!=',
-                ],
-                [
-                    'key' => 'hide_in_menu',
-                    'compare' => 'NOT EXISTS',
-                ],
-            ],
+            'update_post_meta_cache' => true,
         ]);
 
         if (!is_array($children)) {
@@ -50,6 +39,13 @@ final class ChildrenItems
 
         foreach ($children as $child) {
             if (!$child instanceof \WP_Post) {
+                continue;
+            }
+
+            // get_posts primes metadata in bulk, avoiding joins for each child's visibility.
+            // Match the previous OR query: missing metadata or any non-hidden value is visible.
+            $visibility = get_post_meta($child->ID, 'hide_in_menu', false);
+            if ($visibility !== [] && array_filter($visibility, static fn($value) => $value !== '1') === []) {
                 continue;
             }
 
