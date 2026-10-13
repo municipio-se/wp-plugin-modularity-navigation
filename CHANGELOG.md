@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — unreleased
+
+Reduce sibling-navigation query cost by filtering visibility with bulk-loaded
+post metadata instead of metadata joins. Preserve sibling scope, ordering and
+visibility for missing and repeated metadata values. No data migration is required.
+
 ## 1.0.0 — 2026-09-17
 
 First stable release with independent semantic versioning.
