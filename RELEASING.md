@@ -1,14 +1,16 @@
 # Release process
 
-## Released 1.0.1
+## Released 1.0.2
 
 Version
-[1.0.1](https://github.com/municipio-se/wp-plugin-modularity-navigation/releases/tag/1.0.1)
-was published on 2026-10-13 from `179b9461b0668de27a6d643f07a51438c376ff0b`.
-Its sibling-navigation fix was verified locally on WordPress 6.9.8, PHP 8.3.33
-and Municipio 6.43.3, including 559 page comparisons, 45 tests / 199 assertions
-and a manual visibility check. Consumer upgrades remain separate from publication.
-The immutable archive retains the pre-publication changelog wording.
+[1.0.2](https://github.com/municipio-se/wp-plugin-modularity-navigation/releases/tag/1.0.2)
+was published on 2026-10-13 from `ac733a8bcb9194dc4d9af92e1e11bf41bce783cd`.
+Its child-navigation fix was verified locally on WordPress 6.9.8, PHP 8.3.33
+and Municipio 6.43.3, including 559 page comparisons, 46 tests / 201 assertions
+and manual acceptance on Nora. Packagist source/dist references and a clean
+Composer dist installation match the release commit. Consumer upgrades remain
+separate from publication. The immutable archive retains the previous release
+process introduction.
 Composer derives the version from the immutable Git
 tag; do not add a version field to composer.json.
 
