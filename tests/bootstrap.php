@@ -146,6 +146,12 @@ namespace {
         return $GLOBALS['modularity_navigation_test_permalinks'][$postId] ?? false;
     }
 
+    function get_post_meta(int $postId, string $key, bool $single = false): mixed
+    {
+        $values = $GLOBALS['modularity_navigation_test_post_meta'][$postId][$key] ?? [];
+        return $single ? $values[0] ?? '' : $values;
+    }
+
     function get_queried_object_id(): int
     {
         return $GLOBALS['modularity_navigation_test_queried_object_id'] ?? 0;

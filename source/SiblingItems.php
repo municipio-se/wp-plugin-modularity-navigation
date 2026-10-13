@@ -27,18 +27,7 @@ final class SiblingItems
             'post_status' => 'publish',
             'orderby' => 'menu_order',
             'order' => 'DESC',
-            'meta_query' => [
-                'relation' => 'OR',
-                [
-                    'key' => 'hide_in_menu',
-                    'value' => '1',
-                    'compare' => '!=',
-                ],
-                [
-                    'key' => 'hide_in_menu',
-                    'compare' => 'NOT EXISTS',
-                ],
-            ],
+            'update_post_meta_cache' => true,
         ]);
 
         if (!is_array($siblings)) {
@@ -49,6 +38,13 @@ final class SiblingItems
 
         foreach ($siblings as $sibling) {
             if (!$sibling instanceof \WP_Post) {
+                continue;
+            }
+
+            // get_posts primes metadata in bulk, avoiding joins for each sibling's visibility.
+            // Match the previous OR query: missing metadata or any non-hidden value is visible.
+            $visibility = get_post_meta($sibling->ID, 'hide_in_menu', false);
+            if ($visibility !== [] && array_filter($visibility, static fn($value) => $value !== '1') === []) {
                 continue;
             }
 

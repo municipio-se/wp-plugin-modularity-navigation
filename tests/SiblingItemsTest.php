@@ -16,6 +16,7 @@ final class SiblingItemsTest extends TestCase
         $GLOBALS['modularity_navigation_test_permalinks'] = [];
         $GLOBALS['modularity_navigation_test_acf'] = [];
         $GLOBALS['modularity_navigation_test_post_queries'] = [];
+        $GLOBALS['modularity_navigation_test_post_meta'] = [];
     }
 
     public function testItReturnsNoItemsWhenTheCurrentPostIsUnavailable(): void
@@ -50,13 +51,30 @@ final class SiblingItemsTest extends TestCase
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'DESC',
-                'meta_query' => [
-                    'relation' => 'OR',
-                    ['key' => 'hide_in_menu', 'value' => '1', 'compare' => '!='],
-                    ['key' => 'hide_in_menu', 'compare' => 'NOT EXISTS'],
-                ],
+                'update_post_meta_cache' => true,
             ],
             $GLOBALS['modularity_navigation_test_post_queries'][0],
         );
+    }
+
+    public function testItPreservesVisibilityForMissingAndRepeatedMetadata(): void
+    {
+        $GLOBALS['modularity_navigation_test_posts'][18] = new \WP_Post(18, 'Current', 'page', 0, 7);
+        $values = [
+            19 => [],
+            20 => ['0'],
+            21 => [''],
+            22 => ['1'],
+            23 => ['1', '1'],
+            24 => ['1', '0'],
+            25 => ['0', '1'],
+        ];
+        foreach ($values as $id => $metadata) {
+            $GLOBALS['modularity_navigation_test_siblings'][7][] = new \WP_Post($id, "Page $id");
+            $GLOBALS['modularity_navigation_test_post_meta'][$id]['hide_in_menu'] = $metadata;
+            $GLOBALS['modularity_navigation_test_permalinks'][$id] = "https://example.test/$id/";
+        }
+
+        self::assertSame([19, 20, 21, 24, 25], array_column((new SiblingItems())->fromPost(18), 'postId'));
     }
 }
