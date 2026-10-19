@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — 1.1.0
+## 1.1.0 — 2026-10-19
 
 Restore the Tree format with Standard and Highlighted presentations and the
 existing site-wide LTS setting. Menus and child pages show two levels; manual

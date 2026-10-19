@@ -1,5 +1,14 @@
 # Release process
 
+## Release 1.1.0 acceptance
+
+Tree navigation passed 52 tests / 269 assertions and the local Visit Nora
+matrix: four sources, two styles, four viewport widths, and regression checks
+for all six existing formats. Fredrik approved the subsequent VoiceOver check.
+The reference environment was WordPress 6.9.8, PHP 8.3.33 and Municipio 6.43.3.
+No data migration runs. Publication and the Nora production upgrade were
+approved on 2026-10-19; distribution and production checks follow publication.
+
 ## Released 1.0.2
 
 Version
