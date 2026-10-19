@@ -8,8 +8,8 @@ final class ChildrenItems
 {
     /**
      * Reproduce the released LTS child-page query while normalizing its result to the same
-     * flat link model used by every supported presentation. Navigation's supported formats
-     * intentionally render only the first child level, so no depth migration is required.
+     * flat link model shared by the presentations. TreeItems explicitly expands
+     * one additional level; saved legacy depth values are never rewritten.
      *
      * @return array<int, array<string, mixed>>
      */

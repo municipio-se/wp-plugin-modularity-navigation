@@ -23,6 +23,8 @@
         @includeFirst($gridPresentationViews)
     @elseif (!empty($items) && $format === 'cards')
         @include('navigation-cards')
+    @elseif (!empty($items) && $format === 'tree')
+        @include('navigation-tree')
     @elseif (!empty($items) && $format === 'buttons')
         <ul class="mod-navigation-buttons">
             @foreach ($items as $item)

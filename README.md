@@ -10,10 +10,10 @@ compatibility layer.
 - Existing `mod_navigation_format`, `mod_navigation_source`,
   `mod_navigation_menu`, `mod_navigation_items`, `mod_navigation_show_if_empty`,
   and `mod_navigation_empty_message` metadata is reused.
-- Formats `grid`, `buttons`, `list`, `cards`, `inline`, and `bar` can render
-  sources `menu`, `manual`, `children`, and `siblings`.
-- Menu sources render only top-level items. Manual sources retain their saved
-  order, links, targets, icons, and button variants.
+- Formats `grid`, `buttons`, `list`, `cards`, `inline`, `bar`, and `tree` can
+  render sources `menu`, `manual`, `children`, and `siblings`.
+- Flat formats render only top-level menu items. Manual sources retain their
+  saved order, links, targets, icons, and button variants.
 - Child-page sources resolve the current Municipio page and retain WordPress
   `menu_order` while excluding unpublished pages and pages hidden from menus.
 - The legacy theme mod `mod_navigation_grid_style=blocks` is reused and exposed
@@ -29,6 +29,11 @@ compatibility layer.
 - Card columns follow the module's available width. Each column is at least
   `18rem` when space allows, and an incomplete final row keeps empty column
   tracks so its cards remain the same width as the preceding row.
+- Tree output preserves the LTS two-level menu/child-page presentation, while
+  manual selections and siblings stay flat. Standard and Highlighted reuse
+  `mod_navigation_tree_style` in the existing Navigation Customizer section.
+  Images and navigation descriptions are optional; ordinary post excerpts are
+  not substituted. Missing styles use Standard without rewriting saved data.
 
 The plugin does not copy LTS templates, utility classes, colors, pixel sizes, or
 its former eight-word card excerpt. It requires modern Municipio and its Card

@@ -2,16 +2,16 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Modularity Navigation 0.4.0\n"
+"Project-Id-Version: Modularity Navigation 1.1.0-dev\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-modularity-navigation\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-27T08:36:25+00:00\n"
+"POT-Creation-Date: 2026-10-19T18:01:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-navigation\n"
 
 #. Plugin Name of the plugin
@@ -30,15 +30,27 @@ msgid "Whitespace"
 msgstr ""
 
 #: source/Customizer/GridSettings.php:30
-#: source/Module/Navigation.php:35
+#: source/Module/Navigation.php:37
 msgid "Navigation"
 msgstr ""
 
 #: source/Customizer/GridSettings.php:41
-msgid "Style for grid format"
+msgid "Style for tree format"
 msgstr ""
 
 #: source/Customizer/GridSettings.php:46
+msgid "Standard"
+msgstr ""
+
+#: source/Customizer/GridSettings.php:47
+msgid "Highlighted"
+msgstr ""
+
+#: source/Customizer/GridSettings.php:53
+msgid "Style for grid format"
+msgstr ""
+
+#: source/Customizer/GridSettings.php:58
 msgid "Blocks"
 msgstr ""
 
@@ -82,85 +94,90 @@ msgctxt "Navigation Module Format Choice"
 msgid "Bar"
 msgstr ""
 
-#: source/Fields.php:58
+#: source/Fields.php:54
+msgctxt "Navigation Module Format Choice"
+msgid "Tree"
+msgstr ""
+
+#: source/Fields.php:59
 msgctxt "Navigation Module Field Label"
 msgid "Source"
 msgstr ""
 
-#: source/Fields.php:64
-msgctxt "Navigation Module Source Choice"
-msgid "Menu"
-msgstr ""
-
 #: source/Fields.php:65
 msgctxt "Navigation Module Source Choice"
-msgid "Manually selected"
+msgid "Menu"
 msgstr ""
 
 #: source/Fields.php:66
 msgctxt "Navigation Module Source Choice"
-msgid "Child pages"
+msgid "Manually selected"
 msgstr ""
 
 #: source/Fields.php:67
 msgctxt "Navigation Module Source Choice"
+msgid "Child pages"
+msgstr ""
+
+#: source/Fields.php:68
+msgctxt "Navigation Module Source Choice"
 msgid "Sibling pages"
 msgstr ""
 
-#: source/Fields.php:72
+#: source/Fields.php:73
 msgctxt "Navigation Module Field Label"
 msgid "Menu"
 msgstr ""
 
-#: source/Fields.php:90
+#: source/Fields.php:91
 msgctxt "Navigation Module Field Label"
 msgid "Items"
 msgstr ""
 
-#: source/Fields.php:105
+#: source/Fields.php:106
 msgctxt "Navigation Module Field Label"
 msgid "Link"
 msgstr ""
 
-#: source/Fields.php:113
+#: source/Fields.php:114
 msgctxt "Navigation Module Field Label"
 msgid "Variant"
 msgstr ""
 
-#: source/Fields.php:117
+#: source/Fields.php:118
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Primary"
 msgstr ""
 
-#: source/Fields.php:122
+#: source/Fields.php:123
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Secondary"
 msgstr ""
 
-#: source/Fields.php:127
+#: source/Fields.php:128
 msgctxt "Navigation Module Button Variant Choice"
 msgid "Default"
 msgstr ""
 
-#: source/Fields.php:147
+#: source/Fields.php:148
 msgctxt "Navigation Module Field Label"
 msgid "Icon"
 msgstr ""
 
-#: source/Fields.php:186
+#: source/Fields.php:187
 msgctxt "Navigation Module Field Label"
 msgid "Display this module even when there are no links"
 msgstr ""
 
-#: source/Fields.php:198
+#: source/Fields.php:199
 msgctxt "Navigation Module Field Label"
 msgid "Message to display when there are no links"
 msgstr ""
 
-#: source/Module/Navigation.php:36
+#: source/Module/Navigation.php:38
 msgid "Navigation modules"
 msgstr ""
 
-#: source/Module/Navigation.php:37
+#: source/Module/Navigation.php:39
 msgid "Outputs links from menus, manual selections, child pages, or sibling pages."
 msgstr ""

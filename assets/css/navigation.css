@@ -126,10 +126,7 @@
 
 .mod-navigation-cards {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(min(100%, 18rem), 1fr)
-  );
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
   gap: var(--grid-gap);
   margin: 0;
   padding: 0;
@@ -256,6 +253,161 @@
 
 .mod-navigation-bar__label {
   text-decoration: underline;
+}
+
+/* The module may occupy a narrow column in a wide viewport. */
+.mod-navigation-tree {
+  container: navigation-tree / inline-size;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mod-navigation-tree .mod-navigation-tree__item {
+  margin: 0;
+  padding: calc(var(--base, 8px) * 3) 0;
+  min-inline-size: 0;
+}
+
+.mod-navigation-tree__item + .mod-navigation-tree__item {
+  border-block-start: 1px solid var(--color-border-divider, #ccc);
+}
+
+.mod-navigation-tree__main {
+  position: relative;
+  display: grid;
+  gap: var(--grid-gap, 1.5rem);
+  align-items: center;
+}
+
+.mod-navigation-tree__text {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.mod-navigation-tree .mod-navigation-tree__heading {
+  margin: 0;
+}
+
+.mod-navigation-tree__image {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.mod-navigation-tree .mod-navigation-tree__description {
+  margin: var(--base, 8px) 0 0;
+}
+
+.mod-navigation-tree .mod-navigation-tree__children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base, 8px);
+  list-style: none;
+  margin: calc(var(--base, 8px) * 2) 0 0;
+  padding: 0;
+}
+
+.mod-navigation-tree__children > li {
+  margin: 0;
+  padding: 0;
+  max-inline-size: 100%;
+}
+
+.mod-navigation-tree .mod-navigation-tree__link,
+.mod-navigation-tree .mod-navigation-tree__child-link {
+  color: var(--color-link, var(--color-primary, #000));
+  text-decoration: underline;
+  transition: none;
+}
+
+.mod-navigation-tree .mod-navigation-tree__child-link {
+  display: inline-block;
+  padding: var(--base, 8px);
+  overflow-wrap: anywhere;
+}
+
+.mod-navigation-tree--standard .mod-navigation-tree__child-link,
+.mod-navigation-tree--standard .mod-navigation-tree__child-link:visited {
+  background: var(--color-primary, #000);
+  color: var(--color-primary-contrasting, #fff);
+  border-radius: var(--radius-md, 0);
+}
+
+.mod-navigation-tree .mod-navigation-tree__link:visited,
+.mod-navigation-tree--highlighted .mod-navigation-tree__child-link:visited {
+  color: var(--color-link, var(--color-primary, #000));
+}
+
+.mod-navigation-tree .mod-navigation-tree__link:hover,
+.mod-navigation-tree .mod-navigation-tree__link:active,
+.mod-navigation-tree .mod-navigation-tree__link:visited:hover,
+.mod-navigation-tree .mod-navigation-tree__link:visited:active,
+.mod-navigation-tree--highlighted .mod-navigation-tree__child-link:hover,
+.mod-navigation-tree--highlighted .mod-navigation-tree__child-link:active,
+.mod-navigation-tree--highlighted
+  .mod-navigation-tree__child-link:visited:hover,
+.mod-navigation-tree--highlighted
+  .mod-navigation-tree__child-link:visited:active {
+  color: var(--color-link-hover, var(--color-primary-dark, #000));
+}
+
+.mod-navigation-tree--standard .mod-navigation-tree__child-link:hover,
+.mod-navigation-tree--standard .mod-navigation-tree__child-link:active,
+.mod-navigation-tree--standard .mod-navigation-tree__child-link:visited:hover,
+.mod-navigation-tree--standard .mod-navigation-tree__child-link:visited:active {
+  background: var(--color-primary-dark, #000);
+  color: var(--color-primary-contrasting, #fff);
+}
+
+.mod-navigation-tree--highlighted .mod-navigation-tree__main {
+  padding: calc(var(--base, 8px) * 2);
+  background: var(--color-complementary-light, #eee);
+  color: var(--color-complementary-contrasting, #000);
+}
+
+/* Only the heading names the stretched link; description and image stay outside it. */
+.mod-navigation-tree--highlighted .mod-navigation-tree__text,
+.mod-navigation-tree--highlighted .mod-navigation-tree__heading,
+.mod-navigation-tree--highlighted .mod-navigation-tree__link {
+  position: static;
+}
+
+.mod-navigation-tree--highlighted .mod-navigation-tree__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.mod-navigation-tree--highlighted .mod-navigation-tree__main:hover,
+.mod-navigation-tree--highlighted .mod-navigation-tree__main:active {
+  background: var(--color-primary, #000);
+  color: var(--color-primary-contrasting, #fff);
+}
+
+.mod-navigation-tree--highlighted
+  .mod-navigation-tree__main:hover
+  .mod-navigation-tree__link,
+.mod-navigation-tree--highlighted
+  .mod-navigation-tree__main:active
+  .mod-navigation-tree__link {
+  color: inherit;
+}
+
+.mod-navigation-tree .mod-navigation-tree__link:focus-visible,
+.mod-navigation-tree .mod-navigation-tree__child-link:focus-visible,
+.mod-navigation-tree--highlighted
+  .mod-navigation-tree__link:focus-visible::after {
+  outline: 3px solid var(--color-link, var(--color-primary, #000));
+  outline-offset: 3px;
+}
+
+@container navigation-tree (width > 36rem) {
+  .mod-navigation-tree__item--with-image .mod-navigation-tree__main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  }
 }
 
 /* Honor reduced-motion for every navigation hover transition. */

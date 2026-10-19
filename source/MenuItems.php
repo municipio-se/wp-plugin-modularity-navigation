@@ -7,8 +7,8 @@ namespace MunicipioModularityNavigation;
 final class MenuItems
 {
     /**
-     * Keep only top-level items, matching the LTS grid behavior. Nested menu items belong
-     * to the formats deliberately left outside this first port.
+     * Keep only top-level items for the flat formats. TreeMenuItems owns
+     * hierarchy and the tree-specific metadata precedence.
      *
      * @return array<int, array<string, mixed>>
      */

@@ -157,6 +157,17 @@ namespace {
         return $GLOBALS['modularity_navigation_test_queried_object_id'] ?? 0;
     }
 
+    function get_post_thumbnail_id(int $postId): int
+    {
+        return $GLOBALS['modularity_navigation_test_thumbnail_ids'][$postId] ?? 0;
+    }
+
+    function wp_get_attachment_image(int $id, string $size, bool $icon, array $attributes): string
+    {
+        $GLOBALS['modularity_navigation_test_image_requests'][] = [$id, $size, $attributes];
+        return '<img src="image-' . $id . '.jpg" alt="">';
+    }
+
     function update_post_meta(...$args): void
     {
         $GLOBALS['modularity_navigation_test_meta_writes'][] = $args;

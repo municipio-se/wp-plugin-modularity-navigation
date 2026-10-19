@@ -41,6 +41,19 @@ msgstr "Stil för rutnätsformat"
 msgid "Blocks"
 msgstr "Block"
 
+msgid "Style for tree format"
+msgstr "Stil för trädformat"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Highlighted"
+msgstr "Markerad"
+
+msgctxt "Navigation Module Format Choice"
+msgid "Tree"
+msgstr "Träd"
+
 #: source/Fields.php:17
 msgctxt "Navigation Module Field Group Title"
 msgid "Navigation module"

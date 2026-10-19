@@ -34,6 +34,7 @@ final class FieldsTest extends TestCase
                 'cards' => 'Cards',
                 'inline' => 'Inline',
                 'bar' => 'Bar',
+                'tree' => 'Tree',
             ],
             $fields['mod_navigation_format']['choices'],
         );

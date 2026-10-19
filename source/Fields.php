@@ -51,6 +51,7 @@ final class Fields
                     'cards' => _x('Cards', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'inline' => _x('Inline', 'Navigation Module Format Choice', 'modularity-navigation'),
                     'bar' => _x('Bar', 'Navigation Module Format Choice', 'modularity-navigation'),
+                    'tree' => _x('Tree', 'Navigation Module Format Choice', 'modularity-navigation'),
                 ],
             ],
             [

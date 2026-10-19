@@ -10,6 +10,8 @@ use MunicipioModularityNavigation\GridPresentation;
 use MunicipioModularityNavigation\ManualItems;
 use MunicipioModularityNavigation\MenuItems;
 use MunicipioModularityNavigation\SiblingItems;
+use MunicipioModularityNavigation\TreeItems;
+use MunicipioModularityNavigation\TreeMenuItems;
 
 final class Navigation extends \Modularity\Module
 {
@@ -50,20 +52,26 @@ final class Navigation extends \Modularity\Module
         $format = $fields['mod_navigation_format'] ?? '';
         $source = $fields['mod_navigation_source'] ?? '';
         $items = match ($source) {
-            'menu' => (new MenuItems())->fromMenu((string) ($fields['mod_navigation_menu'] ?? '')),
+            'menu' => ($format === 'tree' ? new TreeMenuItems() : new MenuItems())->fromMenu(
+                (string) ($fields['mod_navigation_menu'] ?? ''),
+            ),
             'manual' => (new ManualItems())->fromFields($fields['mod_navigation_items'] ?? null),
             'children' => (new ChildrenItems())->fromPost($this->currentPostId()),
             'siblings' => (new SiblingItems())->fromPost($this->currentPostId()),
             default => [],
         };
 
-        if (!in_array($format, ['grid', 'buttons', 'list', 'cards', 'inline', 'bar'], true)) {
+        if (!in_array($format, ['grid', 'buttons', 'list', 'cards', 'inline', 'bar', 'tree'], true)) {
             $items = [];
         }
 
         if ($format === 'cards') {
             $items = (new CardItems())->fromItems($items);
         }
+        if ($format === 'tree') {
+            $items = (new TreeItems())->fromItems($items, $source);
+        }
+        $treeStyle = get_theme_mod('mod_navigation_tree_style', 'standard');
 
         $gridStyle = get_theme_mod('mod_navigation_grid_style', 'blocks');
         $gridPresentationView = $format === 'grid'
@@ -81,6 +89,7 @@ final class Navigation extends \Modularity\Module
             'source' => $source,
             'items' => $items,
             'gridStyle' => $gridStyle,
+            'treeStyle' => in_array($treeStyle, ['standard', 'highlighted'], true) ? $treeStyle : 'standard',
             'gridPresentationViews' => (new GridPresentation())->viewCandidates($gridPresentationView),
             'showIfEmpty' => in_array($fields['mod_navigation_show_if_empty'] ?? null, [1, '1', true], true),
             'emptyMessage' => (string) ($fields['mod_navigation_empty_message'] ?? ''),

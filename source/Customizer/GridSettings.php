@@ -37,6 +37,18 @@ final class GridSettings
     {
         KirkiField::addField([
             'type' => 'select',
+            'settings' => 'mod_navigation_tree_style',
+            'label' => esc_html__('Style for tree format', 'modularity-navigation'),
+            'section' => self::SECTION_ID,
+            'default' => 'standard',
+            'priority' => 20,
+            'choices' => [
+                'standard' => esc_html__('Standard', 'modularity-navigation'),
+                'highlighted' => esc_html__('Highlighted', 'modularity-navigation'),
+            ],
+        ]);
+        KirkiField::addField([
+            'type' => 'select',
             'settings' => self::GRID_STYLE_SETTING,
             'label' => esc_html__('Style for grid format', 'modularity-navigation'),
             'section' => self::SECTION_ID,
