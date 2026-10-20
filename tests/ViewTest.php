@@ -21,7 +21,7 @@ final class ViewTest extends TestCase
         self::assertStringContainsString("\$format === 'buttons'", $view);
         self::assertStringContainsString("\$format === 'list'", $view);
         self::assertStringContainsString("\$format === 'cards'", $view);
-        self::assertStringContainsString("@include('navigation-cards')", $view);
+        self::assertStringContainsString("make('navigation-cards'", $view);
         self::assertStringContainsString('@button([', $view);
         self::assertStringContainsString("'reversePositions' => true", $view);
         self::assertStringContainsString('@link([', $view);

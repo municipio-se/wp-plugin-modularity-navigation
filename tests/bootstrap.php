@@ -52,6 +52,17 @@ namespace Municipio\Helper {
 }
 
 namespace {
+    require_once dirname(__DIR__) . '/vendor/johnpbloch/wordpress-core/wp-includes/compat.php';
+    require_once dirname(__DIR__) . '/vendor/johnpbloch/wordpress-core/wp-includes/utf8.php';
+    require_once dirname(__DIR__) . '/vendor/johnpbloch/wordpress-core/wp-includes/kses.php';
+    foreach (['span', 'attribute-token', 'text-replacement', 'decoder', 'tag-processor'] as $class) {
+        require_once
+            dirname(__DIR__)
+                . '/vendor/johnpbloch/wordpress-core/wp-includes/html-api/class-wp-html-'
+                . $class
+                . '.php';
+    }
+
     class ModularityNavigationTestPostObject
     {
         public function __construct(

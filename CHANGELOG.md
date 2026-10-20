@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1 — 2026-10-20
+
+Use H3 for Card and Tree item titles beneath a visible module title, and H2
+when the module title is hidden or empty. Preserve the existing rendered
+typography, links and child navigation across module and block rendering.
+No stored content or settings are changed.
+
 ## 1.1.0 — 2026-10-19
 
 Restore the Tree format with Standard and Highlighted presentations and the

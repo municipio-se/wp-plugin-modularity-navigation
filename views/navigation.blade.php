@@ -1,4 +1,5 @@
 @if (!empty($items) || ($showIfEmpty && $emptyMessage !== ''))
+    @php($itemHeadingElement = !$hideTitle && !empty($postTitle) ? 'h3' : 'h2')
     @if (!$hideTitle && !empty($postTitle))
         @typography([
             'id' => 'mod-navigation-' . $ID . '-label',
@@ -22,9 +23,16 @@
     @if (!empty($items) && $format === 'grid')
         @includeFirst($gridPresentationViews)
     @elseif (!empty($items) && $format === 'cards')
-        @include('navigation-cards')
+        {!! \MunicipioModularityNavigation\ItemHeadings::transform(
+            $__env->make('navigation-cards', ['items' => $items])->render(),
+            $itemHeadingElement
+        ) !!}
     @elseif (!empty($items) && $format === 'tree')
-        @include('navigation-tree')
+        {!! \MunicipioModularityNavigation\ItemHeadings::transform(
+            $__env->make('navigation-tree', ['items' => $items, 'treeStyle' => $treeStyle])->render(),
+            $itemHeadingElement,
+            'tree'
+        ) !!}
     @elseif (!empty($items) && $format === 'buttons')
         <ul class="mod-navigation-buttons">
             @foreach ($items as $item)
