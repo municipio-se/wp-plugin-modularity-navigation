@@ -4,7 +4,8 @@
             <a
                 class="mod-navigation-grid__link"
                 href="{{ esc_url($item['href']) }}"
-                @if ($item['target'] === '_blank') target="_blank" rel="noopener noreferrer" @endif
+                target="{{ $item['target'] !== '' ? $item['target'] : '_self' }}"
+                @if ($item['target'] === '_blank') rel="noopener noreferrer" @endif
             >
                 @if ($item['icon'] !== '')
                     {{-- Decorative: the adjacent title is the accessible name, so the icon
