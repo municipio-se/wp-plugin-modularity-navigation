@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2 — 2026-11-26
+
+Preserve every validated link target in the grid layout, including explicit
+same-window and parent-frame targets. Empty targets use the current browsing
+context. Keep new-tab link protection and all other navigation formats intact.
+
 ## 1.1.1 — 2026-10-20
 
 Use H3 for Card and Tree item titles beneath a visible module title, and H2
